@@ -1,8 +1,11 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+/**
+ * Product Excel Import & Export for WooCommerce - WooexportProducts Class
+ *
+ * @author  WPFactory
+ */
 
+defined( 'ABSPATH' ) || exit;
 
 class WooexportProducts {
 

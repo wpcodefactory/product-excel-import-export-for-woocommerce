@@ -1,8 +1,11 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+/**
+ * Product Excel Import & Export for WooCommerce - woopei_importProducts Class
+ *
+ * @author  WPFactory
+ */
 
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'PhpOffice\PhpSpreadsheet\IOFactory' ) ) {
 	include plugin_dir_path( __FILE__ ) . '/Classes/autoload.php';
@@ -381,6 +384,3 @@ function woopei_process() {
 		die;
 	}
 }
-
-
-?>

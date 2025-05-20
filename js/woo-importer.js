@@ -1,3 +1,9 @@
+/**
+ * Product Excel Import & Export for WooCommerce - JS
+ *
+ * @author  WPFactory
+ */
+
 (function( $ ) {
 
 	$(".importer-wrap .exportToggler").click(function(){

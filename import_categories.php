@@ -1,8 +1,11 @@
 <?php
+/**
+ * Product Excel Import & Export for WooCommerce - WooImportCategories Class
+ *
+ * @author  WPFactory
+ */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'PhpOffice\PhpSpreadsheet\IOFactory' ) ) {
 	require plugin_dir_path( __FILE__ ) . '/Classes/autoload.php';
@@ -232,4 +235,3 @@ class WooImportCategories {
 		}
 	}
 }
-?>
