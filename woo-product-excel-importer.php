@@ -4,22 +4,24 @@
  * Plugin URI: https://extend-wp.com/product-import-export-for-woocommerce-with-excel/
  * Description: WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel
  * Version: 7.0.0-dev
- * Author: extendWP
+ * Author: WPFactory
+ * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
  * Domain Path: /languages
- * Author URI: https://extend-wp.com
- *
  * WC requires at least: 2.2
  * WC tested up to: 9.8
- *
- * License: GPL2
+ * Requires Plugins: woocommerce
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Created On: 10-05-2016
- * Updated On: 19-11-2024
+ * Updated On: 20-05-2025
  */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
 
+defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.0-dev-20250520-1349' );
+
+defined( 'WPFACTORY_WC_PEIE_FILE' ) || define( 'WPFACTORY_WC_PEIE_FILE', __FILE__ );
+
+defined( 'ABSPATH' ) || exit;
 
 $role = get_role( 'administrator' );
 $role->add_cap( 'wpeieWoo' );

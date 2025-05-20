@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas
 Tags:  product import, excel import, product export, import products, bulk import
 Requires at least: 3.0.1
-Requires PHP: 8.1
 Tested up to: 6.8
+Requires PHP: 8.1
 Stable tag: 6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
