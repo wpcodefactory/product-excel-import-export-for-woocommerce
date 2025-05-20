@@ -23,15 +23,15 @@ class WooImportCategories {
 			- <a target='_blank' href='<?php echo esc_url( $this->pro_url ); ?>'><?php esc_html_e( 'ATTRIBUTE TERMS in Pro Version', 'woo-product-excel-importer' ); ?></a>
 		</h2>
 		<div>
-		
+
 		<?php woopei_Rating(); ?>
-		
+
 			<ul>
 			<li>
 				<?php esc_html_e( 'Sample File for importing Categories. Upload it using the form below.', 'woo-product-excel-importer' ); ?>
 				<a href='<?php echo esc_url( plugins_url( '/sample_excel/import_categories.xlsx', __FILE__ ) ); ?>'>
 				<?php esc_html_e( 'sample', 'woo-product-excel-importer' ); ?></a>
-				
+
 
 			</li>
 			<?php if ( is_plugin_active( 'yith-color-and-label-variations-for-woocommerce/init.php' ) || is_plugin_active( 'yith-color-and-label-variations-for-woocommerce-pro/init.php' ) ) { ?>
@@ -46,20 +46,20 @@ class WooImportCategories {
 				<a target='_blank' href='https://wordpress.org/plugins/woo-variation-swatches/'><?php esc_html_e( 'Woo Variation swatches', 'woo-product-excel-importer' ); ?> <?php esc_html_e( 'supported in', 'woo-product-excel-importer' ); ?> <a target='_blank' href='<?php echo esc_url( $this->pro_url ); ?>'><?php esc_html_e( 'Pro Version ', 'woo-product-excel-importer' ); ?></a>
 			</li>
 			<?php } ?>
-			
+
 			<?php if ( is_plugin_active( 'perfect-woocommerce-brands/perfect-woocommerce-brands.php' ) || is_plugin_active( 'perfect-woocommerce-brands-pro/perfect-woocommerce-brands-pro.php' ) ) { ?>
-				
+
 				<li>
-				
+
 					<a target='_blank' href='https://wordpress.org/plugins/perfect-woocommerce-brands/'><?php esc_html_e( 'Perfect Brands for WooCommerce', 'woo-product-excel-importer' ); ?> <?php esc_html_e( 'supported in', 'woo-product-excel-importer' ); ?> <a target='_blank' href='<?php echo esc_url( $this->pro_url ); ?>'><?php esc_html_e( 'Pro Version ', 'woo-product-excel-importer' ); ?></a>
-					
-					
+
+
 				</li>
-				
+
 			<?php } ?>
 			</ul>
 			<form method="post" id='categories_import'  action= "<?php echo esc_url( admin_url( 'admin.php?page=woo-product-importer&tab=importCategories' ) ); ?>">
-			
+
 		<?php
 
 				$args             = array(
@@ -97,10 +97,10 @@ class WooImportCategories {
 						<div class="uploader" style="background:url(<?php print esc_url( plugins_url( 'images/default.png', __FILE__ ) ); ?> ) no-repeat left center;" >
 							<img src="" class='userSelected'/>
 							<input type="file"  required name="file" id='woopeiCatFile'  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
-						</div>						
+						</div>
 						</td>
 					</tr>
-				</table>				
+				</table>
 				<?php submit_button( __( 'Import Terms', 'woo-product-excel-importer' ), 'primary', 'importTerms' ); ?>
 			</form>
 			<div class='result'><?php $this->importCategories(); ?></div>

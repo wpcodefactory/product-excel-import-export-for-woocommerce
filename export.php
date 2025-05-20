@@ -24,7 +24,7 @@ class WooexportProducts {
 		<p>
 			<i><?php esc_html_e( 'Important Note: always save the generated export file in xlsx format to a new excel for import use.', 'woo-product-excel-importer' ); ?></i>
 		</p>
-		<div>    
+		<div>
 			<div class='result'><?php  $this->exportProductsForm() ; ?></div>
 		</div>
 		<?php
@@ -40,13 +40,13 @@ class WooexportProducts {
 		);
 		if ( $query->have_posts() ) {
 			?>
-				<p class='exportToggler button button-secondary warning   btn btn-danger'><i class='fa fa-eye '></i> 
+				<p class='exportToggler button button-secondary warning   btn btn-danger'><i class='fa fa-eye '></i>
 					<?php esc_html_e( 'Filter & Fields to Show', 'woo-product-excel-importer' ); ?>
 				</p>
-				
-				
-				<form name='exp_ProductsForm' id='exp_ProductsForm' method='post' action= "<?php echo esc_url( admin_url( 'admin.php?page=woo-product-importer&tab=exportProducts' ) ); ?>" >	
-					<table class='wp-list-table widefat fixed table table-bordered'>	
+
+
+				<form name='exp_ProductsForm' id='exp_ProductsForm' method='post' action= "<?php echo esc_url( admin_url( 'admin.php?page=woo-product-importer&tab=exportProducts' ) ); ?>" >
+					<table class='wp-list-table widefat fixed table table-bordered'>
 						<tr>
 							<td class='premium'>
 								<?php esc_html_e( 'Choose Taxonomy - PRO VERSION', 'woo-product-excel-importer' ); ?>
@@ -56,7 +56,7 @@ class WooexportProducts {
 
 						<tr>
 							<td>
-								<?php esc_html_e( 'Keywords', 'woo-product-excel-importer' ); ?> 
+								<?php esc_html_e( 'Keywords', 'woo-product-excel-importer' ); ?>
 							</td>
 							<td>
 								<input type='text' name='keyword'  id='keyword' placeholder='<?php esc_html_e( 'Search term', 'woo-product-excel-importer' ); ?>'/>
@@ -64,7 +64,7 @@ class WooexportProducts {
 							<td></td><td></td>
 						</tr>
 						<tr>
-							<td class='premium'><?php esc_html_e( 'SKU', 'woo-product-excel-importer' ); ?> - <?php esc_html_e( 'PRO Version', 'woo-product-excel-importer' ); ?></td> 
+							<td class='premium'><?php esc_html_e( 'SKU', 'woo-product-excel-importer' ); ?> - <?php esc_html_e( 'PRO Version', 'woo-product-excel-importer' ); ?></td>
 							<td class='premium'>
 								<input type='text' name='sku' id='sku' disabled placeholder='<?php esc_html_e( 'by SKU - PRO', 'woo-product-excel-importer' ); ?>'/>
 							</td>
@@ -98,7 +98,7 @@ class WooexportProducts {
 							<td>
 								<input type='number' name='sale_price' id='sale_price' disabled placeholder='<?php esc_html_e( 'Sale Price - PRO ', 'woo-product-excel-importer' ); ?>'/>
 							</td>
-							
+
 							<td class='premium'>
 								<?php esc_html_e( 'Sale Price Selector', 'woo-product-excel-importer' ); ?> - <?php esc_html_e( 'PRO Version', 'woo-product-excel-importer' ); ?>
 							</td>
@@ -109,8 +109,8 @@ class WooexportProducts {
 									<option value="<="><=</option>
 									<option value="<"><</option>
 									<option value="==">==</option>
-									<option value="!=">!=</option>						
-								</select>	
+									<option value="!=">!=</option>
+								</select>
 							</td>
 						</tr>
 
@@ -123,12 +123,12 @@ class WooexportProducts {
 							</td>
 							<input type='hidden' name='offset' style='width:100%;' id='offset' placeholder='<?php esc_html_e( 'Start from..', 'woo-product-excel-importer' ); ?>' />
 							<input type='hidden' name='start' /><input type='hidden' name='total' />
-							
+
 							<td></td><td></td>
 						</tr>
-						
+
 					</table>
-					
+
 					<?php $taxonomy_objects = array( 'product_cat', 'product_tag' ); ?>
 
 					<table class='wp-list-table widefat fixed table table-bordered'>
@@ -137,7 +137,7 @@ class WooexportProducts {
 								<?php esc_html_e( 'TAXONOMIES TO SHOW', 'woo-product-excel-importer' ); ?> - <span class='premium'><?php esc_html_e( 'More in PRO Version', 'woo-product-excel-importer' ); ?></span>
 							</h2>
 						</legend>
-						
+
 						<tr>
 							<?php
 							$cols    = array();
@@ -153,8 +153,8 @@ class WooexportProducts {
 							?>
 						</tr>
 					</table>
-					
-					
+
+
 					<table class='wp-list-table widefat fixed table table-bordered'>
 						<legend>
 							<h2>
@@ -164,9 +164,9 @@ class WooexportProducts {
 						<?php
 						$cols = array( 'title', 'description', 'excerpt', '_sku', '_regular_price', '_sale_price', '_weight', '_stock', '_stock_status', '_width', '_length', '_height', '_virtual' );
 						?>
-						
+
 						<tr>
-						
+
 						<?php
 						$checked = 'checked';
 						foreach ( $cols as $col ) {
@@ -176,10 +176,10 @@ class WooexportProducts {
 								</td>';
 						}
 						?>
-						
+
 						</tr>
-					</table>			
-							
+					</table>
+
 					<input type='hidden' name='columnsToShow' value='1'  />
 					<input type='hidden' id='action' name='action' value='woopei_exportProducts' />
 					<?php wp_nonce_field( 'columnsToShow' ); ?>
@@ -187,7 +187,7 @@ class WooexportProducts {
 					<?php submit_button( esc_html__( 'Search', 'woo-product-excel-importer' ), 'primary', 'Search' ); ?>
 
 				</form>
-			
+
 			<div class='resultExport'>
 				<?php $this->exportProducts(); ?>
 			</div>
@@ -236,7 +236,7 @@ class WooexportProducts {
 				?>
 				<p class='message error'>
 					<?php esc_html_e( 'Wait... Download is loading...', 'woo-product-excel-importer' ); ?>
-					<b class='totalPosts' ><?php print esc_html( $query->post_count ); ?></b>					
+					<b class='totalPosts' ><?php print esc_html( $query->post_count ); ?></b>
 				</p>
 
 				<?php
@@ -258,11 +258,11 @@ class WooexportProducts {
 			<div id="myProgress">
 				<div id="myBar"></div>
 			</div>
-							
+
 			<div class='exportTableWrapper' style='overflow:auto;width:100%;max-height:600px;'>
 				<table id='toExport'>
 					<thead>
-						<tr> 
+						<tr>
 							<th>
 								<?php esc_html_e( 'ID', 'woo-product-excel-importer' ); ?>
 							</th>
@@ -284,10 +284,10 @@ class WooexportProducts {
 							?>
 						</tr>
 					</thead>
-					<tbody class='tableExportAjax'>			
-					</tbody>	
+					<tbody class='tableExportAjax'>
+					</tbody>
 				</table>
-			</div>						
+			</div>
 			<?php
 
 		}//check request
@@ -341,35 +341,35 @@ function woopei_exportProducts() {
 				if ( $product->is_type( 'simple' ) ) {
 					?>
 									<tr>
-						<td><?php print esc_attr( get_the_ID() ); ?></td>					
-						<?php if ( isset( $_REQUEST['toShowtitle'] ) ) { ?>								 
+						<td><?php print esc_attr( get_the_ID() ); ?></td>
+						<?php if ( isset( $_REQUEST['toShowtitle'] ) ) { ?>
 							<td><?php esc_attr( the_title() ); ?></td>
-						<?php } ?>					
-						<?php if ( isset( $_REQUEST['toShowdescription'] ) ) { ?>									
+						<?php } ?>
+						<?php if ( isset( $_REQUEST['toShowdescription'] ) ) { ?>
 							<td>
 								<?php print esc_attr( wp_strip_all_tags( get_post_field( 'post_content', get_the_ID() ) ) ); ?>
 							</td>
 						<?php } ?>
-						<?php if ( isset( $_REQUEST['toShowexcerpt'] ) ) { ?>								 
+						<?php if ( isset( $_REQUEST['toShowexcerpt'] ) ) { ?>
 							<td>
-								<?php print esc_attr( wp_strip_all_tags( get_post_field( 'post_excerpt', get_the_ID() ) ) ); ?>							
+								<?php print esc_attr( wp_strip_all_tags( get_post_field( 'post_excerpt', get_the_ID() ) ) ); ?>
 							</td>
-						<?php } ?>												
+						<?php } ?>
 
-									
+
 						<?php
 						foreach ( $post_meta as $meta ) {
 							if ( isset( $_REQUEST[ 'toShow' . $meta ] ) ) {
 
 									?>
 									<td><?php print esc_attr( get_post_meta( get_the_ID(), $meta, true ) ); ?></td>
-									
+
 									<?php
 
 							}
 						}
 						$terms = get_post_taxonomies( get_the_ID() );
-						
+
 						foreach ( $terms as $tax ) {
 							$term = get_the_terms( get_the_ID(), $tax );
 							if ( isset( $_REQUEST[ 'toShow' . $tax ] ) ) {// show columns according to what is checked

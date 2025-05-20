@@ -42,13 +42,13 @@ function woopei_importProducts() {
 				?>
 				<span class='thisNum'></span>
 				<div class='ajaxResponse'></div>
-					
+
 				<form method='POST' id ='product_process' action= "<?php print esc_url( admin_url( 'admin.php?page=woo-product-importer' ) ); ?>">
-				
-				
+
+
 					<p style='font-style:italic'><?php esc_html_e( ' DATA MAPPING: Drag and drop excel columns on the right to product properties on the left, OR ', 'woo-product-excel-importer' ); ?><i><b> <?php esc_html_e( 'Auto Match Columns', 'woo-product-excel-importer' ); ?> <input type='checkbox' name='automatch_columns' id='automatch_columns' value='yes'  /> </b></i></p>
-				
-					 
+
+
 				<?php
 					print "<div style='float:right;width:50%'>";
 					print '<h3>' . esc_html__( 'EXCEL COLUMNS', 'woo-product-excel-importer' ) . '</h3><p>';
@@ -63,8 +63,8 @@ function woopei_importProducts() {
 				?>
 				<p class='hideOnUpdateById'>
 					<input type='checkbox' name='selectparent' id='selectparent' value='yes'  /> <b> <?php esc_html_e( 'Select Parent Categories as well ', 'woo-product-excel-importer' ); ?></b>
-				</p>                
-										 
+				</p>
+
 				<?php
 					print '<h3>' . esc_html__( 'PRODUCT FIELDS', 'woo-product-excel-importer' ) . '</h3>';
 
@@ -103,7 +103,7 @@ function woopei_importProducts() {
 
 					<input type='hidden' name='finalupload' value='<?php print esc_attr( $total ); ?>' />
 					<input type='hidden' name='start' value='2' />
-					<input type='hidden' name='action' value='woopei_process' />                    
+					<input type='hidden' name='action' value='woopei_process' />
 				<?php wp_nonce_field( 'excel_process', 'secNonce' );
 				submit_button( esc_html__( 'Upload', 'woo-product-excel-importer' ), 'primary', 'check' );
 				print '</div>';

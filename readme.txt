@@ -1,23 +1,22 @@
 === Product Excel Import & Export for WooCommerce ===
-Contributors: taz_bambu, productexcelimport 
-Donate link: https://extend-wp.com/product-import-export-for-woocommerce-with-excel/
+Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas
 Tags:  product import, excel import, product export, import products, bulk import
 Requires at least: 3.0.1
 Requires PHP: 8.1
-Tested up to: 6.7
-Stable tag: trunk
+Tested up to: 6.8
+Stable tag: 6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WordPress Plugin to Import Products and Export Products for Woocommerce in Bulk with Excel
- 
+
 == Description ==
 
 With this WordPress plugin you can do Product Import & Export for Woocommerce in Bulk with Excel instantly.
 Unlimited import/updates of Simple products along with their images is possible as the process works in batched to avoid PHP memory limits.
 Export your WooCommerce products in excel file to later do Inventory Stock Updates or change your Prices in bulk.
 
-== MAIN FEATURES == 
+== MAIN FEATURES ==
 
 * **Product Import Simple** Products  with Excel
 * **Product Update Simple** Products  with Excel easily , stock inventory and prices updates.
@@ -27,10 +26,10 @@ Export your WooCommerce products in excel file to later do Inventory Stock Updat
 * **Data mapping** - Drag and drop Excel Columns to Product Fields easily. No More Hassle with CSV's!
 * **Automatch feature** - The plugin can automatically map excel columns to the relevant product fields based on label names.
 
-== OTHER FEATURES == 
+== OTHER FEATURES ==
 * define user role to use the plugin apart from admin
 
-== You need to Import / Export Variable Products? == 
+== You need to Import / Export Variable Products? ==
 
 The [PRO Version](https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/ "Woo Product Importer Exporter Premium") of this wp plugin allows you to do Product Import Export for WooCommerce, **Simple or Variable with Multiple Attributes**,  **import Images & Galleries for custom fields - [acf pro](https://www.advancedcustomfields.com/pro/ "acf pro")**, **update products by ID, SKU** or TITLE. Moreover, **WPML compatibility** and multilingual support for product import , **Import [WooCommerce Subscription Products](https://woocommerce.com/products/woocommerce-subscriptions/ "WooCommerce Subscription Products")** , **Schedule Product Import with CRON** Job and create **Import Template** to Save Time, import **Product Categories with their Images**, all using Excel!
 
@@ -39,7 +38,7 @@ The [PRO Version](https://extend-wp.com/product/wordpress-product-import-export-
 1. Create an excel or use the sample from plugin setting's page with tou data - 1st row  is the heading eg. TITLE, 2nd row will have the product title. Use 1 row for each product. Each Column represents a field to import along with your product.
 2. Upload the excel file on Product Excel Import & Export for WooCommerce settings page.
 3. Once you upload, you will see a screen where you can map the data from the excel to the product fields of WooCommerce.
-4. Click Upload and wait. Product Import in Bulk will function with no hassle! 
+4. Click Upload and wait. Product Import in Bulk will function with no hassle!
 
 
 Lastly, added "wpeieWoo" user capability for admin, you are free to set this capability either programmatically or with a plugin like 'User Role Editor'.
@@ -96,7 +95,7 @@ Lastly, added "wpeieWoo" user capability for admin, you are free to set this cap
 == Check our other Plugins ==
 [Orders Import - Orders Export, Coupons Import Export, Reviews & Products Import/Export Bundle](https://wordpress.org/plugins/store-migration-products-orders-import-export-with-excel/")
 [Bulk Edit + Excel Importer](https://extend-wp.com/product/woocommerce-product-excel-importer-bulk-editing-pro/ "WebD WooCommerce Product Excel Importer & Bulk Edit")
-[Excel Importer for Any Content Type](https://extend-wp.com/product/content-importer-wordpress-woocommerce-excel/ "WordPress 
+[Excel Importer for Any Content Type](https://extend-wp.com/product/content-importer-wordpress-woocommerce-excel/ "WordPress
 CONTENT EXCEL IMPORTER")
 [Users & Customers Import Export with Excel](https://wordpress.org/plugins/users-import-export-with-excel-for-wp/ "Users & Customers Import Export with Excel")
 [Stock Manager with Excel & Auto Updates](https://wordpress.org/plugins/products-stock-manager-with-excel/")
@@ -168,6 +167,11 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 
 == Changelog ==
 
+= 7.0.0 - 20/05/2025 =
+* Dev - Code refactoring and cleanup.
+* WC tested up to: 9.8.
+* Tested up to: 6.8.
+
 = 6.0 =
 phpspreadsheet updated to 3.4 version
 
@@ -193,11 +197,11 @@ fix dismiss note
 add product gallery  import and export functionality
 
 = 5.3 =
-fix export issues 
+fix export issues
 
 = 5.2 =
 add product Image import and export functionality
-fix export issues  
+fix export issues
 
 = 5.1 =
 check wp compatibility
@@ -290,7 +294,7 @@ If description column not selected, during update previous content will be prese
 Properly refresh the view for price changes for products - delete product_transients.
 
 = 1.2 =
-Functionality to add multiple categories or tags from one cell comma separated 
+Functionality to add multiple categories or tags from one cell comma separated
 Fix UI
 Avoid css conflicts
 
@@ -306,7 +310,7 @@ Fix bug with empty excel columns
 
 = 1.2 =
 
-Functionality to add multiple categories or tags from one cell comma separated 
+Functionality to add multiple categories or tags from one cell comma separated
 Fix UI
 Avoid css conflicts
 
@@ -403,10 +407,10 @@ check wp compatibility
 
 = 5.2 =
 add product Image import and export functionality
-fix export issues 
+fix export issues
 
 = 5.3 =
-fix export issues 
+fix export issues
 
 = 5.4 =
 fix dismiss note
