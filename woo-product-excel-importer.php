@@ -17,12 +17,31 @@
  * Updated On: 20-05-2025
  */
 
-defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.0-dev-20250520-1349' );
+defined( 'ABSPATH' ) || exit;
+
+defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.0-dev-20250520-1359' );
 
 defined( 'WPFACTORY_WC_PEIE_FILE' ) || define( 'WPFACTORY_WC_PEIE_FILE', __FILE__ );
 
-defined( 'ABSPATH' ) || exit;
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-wpfactory-wc-peie.php';
 
+if ( ! function_exists( 'wpfactory_wc_peie' ) ) {
+	/**
+	 * Returns the main instance of WPFactory_WC_PEIE to prevent the need to use globals.
+	 *
+	 * @version 7.0.0
+	 * @since   7.0.0
+	 */
+	function wpfactory_wc_peie() {
+		return WPFactory_WC_PEIE::instance();
+	}
+}
+
+add_action( 'plugins_loaded', 'wpfactory_wc_peie' );
+
+/**
+ * role.
+ */
 $role = get_role( 'administrator' );
 $role->add_cap( 'wpeieWoo' );
 
