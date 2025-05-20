@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Product Excel Import & Export for WooCommerce
  * Plugin URI: https://extend-wp.com/product-import-export-for-woocommerce-with-excel/
- * Description: WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel
+ * Description: WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel.
  * Version: 7.0.0-dev
  * Author: WPFactory
  * Author URI: https://wpfactory.com

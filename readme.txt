@@ -8,7 +8,7 @@ Stable tag: 6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WordPress Plugin to Import Products and Export Products for Woocommerce in Bulk with Excel
+WordPress Plugin to Import Products and Export Products for Woocommerce in Bulk with Excel.
 
 == Description ==
 
