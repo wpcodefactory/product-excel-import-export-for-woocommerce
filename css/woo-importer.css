@@ -7,34 +7,34 @@
 /* ANIMATION RIGHT TO LEFT*/
 @-webkit-keyframes rightToLeft{
 	0% {
-	    opacity: 0;
-	    -webkit-transform: translateX(300px);
-	    -moz-transform: translateX(300px);
-	    transform: translateX(300px) ;
+		opacity: 0;
+		-webkit-transform: translateX(300px);
+		-moz-transform: translateX(300px);
+		transform: translateX(300px) ;
 
 	}
 	30% {
-	    opacity: 1;
-	    -webkit-transform: translateX(0px) ;
-	    -moz-transform: translateX(0px) ;
-	    transform: translateX(0px) ;
+		opacity: 1;
+		-webkit-transform: translateX(0px) ;
+		-moz-transform: translateX(0px) ;
+		transform: translateX(0px) ;
 
 	}
 	100% {
-	    opacity: 1;
-	    -webkit-transform: scale(1) ;
-	    -moz-transform:  scale(1) ;
-	    transform:  scale(1) ;
+		opacity: 1;
+		-webkit-transform: scale(1) ;
+		-moz-transform:  scale(1) ;
+		transform:  scale(1) ;
 
 	}
 }
 
 .rightToLeft{
-    -webkit-animation: rightToLeft 2s ease-in-out;
-    -moz-animation: rightToLeft 2s ease-in-out;
-    -o-animation: rightToLeft 2s ease-in-out;
-    -ms-animation: rightToLeft 2s ease-in-out;
-    animation: rightToLeft 2s ease-in-out;
+	-webkit-animation: rightToLeft 2s ease-in-out;
+	-moz-animation: rightToLeft 2s ease-in-out;
+	-o-animation: rightToLeft 2s ease-in-out;
+	-ms-animation: rightToLeft 2s ease-in-out;
+	animation: rightToLeft 2s ease-in-out;
 
 }
 
@@ -123,22 +123,22 @@
 }
 
 .importer-wrap.loading > * {
-    opacity:0.2;
+	opacity:0.2;
 }
 
 .importer-wrap.loading:before {
-    position:fixed;
-    content: "Loading...";
-    font-size:2em;
-    padding: 22px;
-    background: #000;
-    background: url(../images/loading.gif) no-repeat center center;
-    color: #fff;
-    width: 50%;
-    height:50%;
-    margin-left:15%;
-    box-sizing: border-box;
-    text-align:center;
+	position:fixed;
+	content: "Loading...";
+	font-size:2em;
+	padding: 22px;
+	background: #000;
+	background: url(../images/loading.gif) no-repeat center center;
+	color: #fff;
+	width: 50%;
+	height:50%;
+	margin-left:15%;
+	box-sizing: border-box;
+	text-align:center;
 }
 
 .importer-wrap .premium_msg{
@@ -256,33 +256,33 @@
 
 /*  PRO VERSION MODAL */
 #woopeiPopup , #woopei_extensions_popup{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9999999999999999999999; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 9999999999999999999999; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 #woopeiPopup .modal-content, #woopei_extensions_popup .woopei_extensions_content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+	background-color: #fefefe;
+	margin: 10% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 #woopeiPopup .close, #woopei_extensions_popup .woopeiclose {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 #woopeiPopup .close{
@@ -293,9 +293,9 @@
 #woopei_extensions_popup .woopeiclose:hover,
 #woopei_extensions_popup .woopeiclose:focus,
 {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 #woopeiPopup .columns2{
@@ -339,12 +339,12 @@
 
 
 .woopei_extensions_content .ex_columns{
-    flex: 0 50%;
+	flex: 0 50%;
 	padding:20px;
 	box-sizing:border-box;
 }
 .woopei_extensions_content .ex_columns:nth-child(even) {
-    border-right: 1px solid #efefef;
+	border-right: 1px solid #efefef;
 }
 
 .woopeiclose{

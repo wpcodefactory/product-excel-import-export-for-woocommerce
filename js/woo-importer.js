@@ -15,27 +15,27 @@
 
 	$('.importer-wrap #upload').attr('disabled','disabled');
 
-    $(".importer-wrap .woopeiFile").change(function () {
-        var fileExtension = ['xls', 'xlsx'];
-        if ( $.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1 ) {
-            alert( "Only format allowed: "+fileExtension.join(', ') );
+	$(".importer-wrap .woopeiFile").change(function () {
+		var fileExtension = ['xls', 'xlsx'];
+		if ( $.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1 ) {
+			alert( "Only format allowed: "+fileExtension.join(', ') );
 			$('.importer-wrap #upload').attr('disabled','disabled');
-        }else{
+		}else{
 			$('.importer-wrap #upload').removeAttr('disabled');
 			$(".importer-wrap #product_import").submit();
 		}
-    });
+	});
 
-    $(".importer-wrap #woopeiCatFile").change(function () {
-        var fileExtension = ['xls', 'xlsx'];
-        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            alert("Only format allowed: "+fileExtension.join(', '));
+	$(".importer-wrap #woopeiCatFile").change(function () {
+		var fileExtension = ['xls', 'xlsx'];
+		if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+			alert("Only format allowed: "+fileExtension.join(', '));
 			$('.importer-wrap #upload').attr('disabled','disabled');
-        }else{
+		}else{
 			$('.importer-wrap #upload').removeAttr('disabled');
 			$("#categories_import").submit();
 		}
-    });
+	});
 
 	$('.importer-wrap .nav-tab-wrapper a').click(function(e){
 		if($(this).hasClass("premium") ){

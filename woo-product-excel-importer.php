@@ -93,13 +93,10 @@ function woopei_header() {
 	<?php
 }
 
-
-
 function woopei_footer() {
 	/** this function is main plugin footer */
 	?>
 	<hr>
-
 
 		<a target='_blank' class='web_logo' href='https://extend-wp.com/'>
 			<img  src='<?php echo esc_url( plugins_url( 'images/extendwp.png', __FILE__ ) ); ?>' alt='Get more plugins by extendWP' title='Get more plugins by extendWP' />
@@ -137,7 +134,6 @@ function woopei_form() {
 function woopei_main() {
 	/** this function provides the html for the main interface */
 	?>
-
 
 		<p>
 			<strong><?php esc_html_e( 'Import / Update simple WooCommerce products.', 'woo-product-excel-importer' ); ?>
@@ -265,10 +261,9 @@ function woopei_Rating() {
 	}
 }
 
-
-	// check more if you like!
-	add_action( 'wp_ajax_nopriv_woopei_extensions', 'woopei_extensions' );
-	add_action( 'wp_ajax_woopei_extensions', 'woopei_extensions' );
+// check more if you like!
+add_action( 'wp_ajax_nopriv_woopei_extensions', 'woopei_extensions' );
+add_action( 'wp_ajax_woopei_extensions', 'woopei_extensions' );
 
 function woopei_extensions() {
 	/** this function provides a popup for extra plugins */
@@ -414,7 +409,6 @@ function woopei_extensions() {
 	}
 }
 
-
 // deactivation survey
 
 require plugin_dir_path( __FILE__ ) . '/lib/codecabin/plugin-deactivation-survey/deactivate-feedback-form.php';
@@ -430,7 +424,6 @@ add_filter(
 		return $plugins;
 	}
 );
-
 
 // Email notification form
 
