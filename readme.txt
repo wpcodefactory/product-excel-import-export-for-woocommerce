@@ -22,7 +22,7 @@ Export your WooCommerce products in excel file to later do Inventory Stock Updat
 * **Product Update Simple** Products  with Excel easily , stock inventory and prices updates.
 * **Product Export for Woocommerce of your Simple Products** in Excel - by the hit of a button!
 * **Filter Product Exports** by keyword
-* **Import Product Categories tree** with excel - Independently from products to create your product categories hierarchy for your Eshop.
+* **Import Product Categories tree** with excel - Independently from products to create your product categories hierarchy for your eShop.
 * **Data mapping** - Drag and drop Excel Columns to Product Fields easily. No More Hassle with CSV's!
 * **Automatch feature** - The plugin can automatically map excel columns to the relevant product fields based on label names.
 
@@ -31,11 +31,11 @@ Export your WooCommerce products in excel file to later do Inventory Stock Updat
 
 == You need to Import / Export Variable Products? ==
 
-The [PRO Version](https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/ "Woo Product Importer Exporter Premium") of this wp plugin allows you to do Product Import Export for WooCommerce, **Simple or Variable with Multiple Attributes**,  **import Images & Galleries for custom fields - [acf pro](https://www.advancedcustomfields.com/pro/ "acf pro")**, **update products by ID, SKU** or TITLE. Moreover, **WPML compatibility** and multilingual support for product import , **Import [WooCommerce Subscription Products](https://woocommerce.com/products/woocommerce-subscriptions/ "WooCommerce Subscription Products")** , **Schedule Product Import with CRON** Job and create **Import Template** to Save Time, import **Product Categories with their Images**, all using Excel!
+The [PRO Version](https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/ "Woo Product Importer Exporter Premium") of this wp plugin allows you to do Product Import Export for WooCommerce, **Simple or Variable with Multiple Attributes**,  **import Images & Galleries for custom fields - [ACF pro](https://www.advancedcustomfields.com/pro/ "ACF pro")**, **update products by ID, SKU** or TITLE. Moreover, **WPML compatibility** and multilingual support for product import , **Import [WooCommerce Subscription Products](https://woocommerce.com/products/woocommerce-subscriptions/ "WooCommerce Subscription Products")** , **Schedule Product Import with CRON** Job and create **Import Template** to Save Time, import **Product Categories with their Images**, all using Excel!
 
 
 = How to =
-1. Create an excel or use the sample from plugin setting's page with tou data - 1st row  is the heading eg. TITLE, 2nd row will have the product title. Use 1 row for each product. Each Column represents a field to import along with your product.
+1. Create an excel or use the sample from plugin setting's page with your data - 1st row  is the heading e.g., TITLE, 2nd row will have the product title. Use 1 row for each product. Each Column represents a field to import along with your product.
 2. Upload the excel file on Product Excel Import & Export for WooCommerce settings page.
 3. Once you upload, you will see a screen where you can map the data from the excel to the product fields of WooCommerce.
 4. Click Upload and wait. Product Import in Bulk will function with no hassle!
@@ -63,7 +63,7 @@ Lastly, added "wpeieWoo" user capability for admin, you are free to set this cap
 * Update by Product ID, SKU or Title. You can easily export get the necessary fields and update back.
 * PRODUCT IMPORT - SIMPLE PRODUCTS WITH ATTRIBUTES: add multiple attributes,comma separated, this means you need only one Excel row for each product!
 * Update Feature Supports Update by PRODUCT ID - given in the Export Feature! This was you can easily update simple products or variable, along with product variations on the fly!
-* FIELDS SUPPORTED: User preConfigured Attributes, User preConfigured Custom Taxonomies, length, width, height, downloadable, download url, download expiry, download limit, virtual, purchase note, crossell ids, upsell ids, purchase note, backorders, sold individually, featured, tax class, tax status, stock status, shipping class
+* FIELDS SUPPORTED: User preConfigured Attributes, User preConfigured Custom Taxonomies, length, width, height, downloadable, download url, download expiry, download limit, virtual, purchase note, cross-sell ids, upsell ids, purchase note, backorders, sold individually, featured, tax class, tax status, stock status, shipping class
 * CUSTOM FIELDS SUPPORT: ACF / ACF PRO and other plugin's post meta fields  - YOU CAN ALSO manually set the name of custom field you need to be available for import & export
 * Import / Export YOAST SEO Meta Product fields,  like META TITLE, META DESCRIPTION
 * Compatible with [YITH WooCommerce Color and Label Variations](https://yithemes.com/themes/plugins/yith-woocommerce-color-and-label-variations/ "YITH WooCommerce Color and Label Variations")
@@ -76,7 +76,7 @@ Lastly, added "wpeieWoo" user capability for admin, you are free to set this cap
 * IMPORT PRODUCT CATEGORIES with Images: you are able to import multiple product categories individually from product creation along with uploading Product Category Image. This allows you to complete your work a lot quicker, without missing out on important stuff such as e-shop categories.
 * DELETE CATEGORY TERMS THROUGH EXCEL FILE
 * HTML SUPPORT for PRODUCT DESCRIPTION - directly from an excel column you can right html to import as content for your product description. As simple as that!
-* HTML SUPPORT for PRODUCT EXCERPT - directly from an excel column you can right html to import as content for your product exceprt. As simple as that!
+* HTML SUPPORT for PRODUCT EXCERPT - directly from an excel column you can right html to import as content for your product excerpt. As simple as that!
 * Set Default Attribute Combination for Variable Products
 * Define custom separator for when importing / exporting multiple values of a field. This avoids conflicts with comma separated values , mixed with values with comma as delimiter
 
@@ -116,7 +116,7 @@ Add one row for each product and each column will refer to a product field, such
 Yes, update is also supported and will be mentioned while uploading. Update is based on Title. If a title entered in an excel column exists as product in your website, this product's fields will be updated.
 
 = Can I add categories with Excel for WooCommerce Products? =
-Yes, when you add a cateogory terms in excel, this will be created along with the product.
+Yes, when you add a category terms in excel, this will be created along with the product.
 You can add them comma separated in an excel column.
 
 = How do i define if a WooCommerce Product is in stock? =
@@ -174,265 +174,138 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 * Tested up to: 6.8.
 
 = 6.0 =
-phpspreadsheet updated to 3.4 version
+* PhpSpreadsheet updated to 3.4 version.
 
 = 5.9 =
-check woo compatibility
+* Check woo compatibility.
 
 = 5.8 =
-rewrite import code to insert products in chunks and avoid any php memory limit
-compatibility woocommerce 8.7
+* Rewrite import code to insert products in chunks and avoid any php memory limit.
+* Compatibility woocommerce 8.7.
 
 = 5.7 =
-run js due to popup
+* Run js due to popup.
 
 = 5.6 =
-fix signup repeatedly showing
-check compatibility
+* Fix signup repeatedly showing.
+* Check compatibility.
 
 = 5.5 =
-show signup only on plugin page
+* Show signup only on plugin page.
 
 = 5.4 =
-fix dismiss note
-add product gallery  import and export functionality
+* Fix dismiss note.
+* Add product gallery  import and export functionality.
 
 = 5.3 =
-fix export issues
+* Fix export issues.
 
 = 5.2 =
-add product Image import and export functionality
-fix export issues
+* Add product Image import and export functionality.
+* Fix export issues.
 
 = 5.1 =
-check wp compatibility
+* Check wp compatibility.
 
 = 5.0 =
-check PHP 8.2 compatibility
+* Check PHP 8.2 compatibility.
 
 = 4.9 =
-localization fix
+* Localization fix.
 
 = 4.8 =
-fix PHP 8.06 compatibility
+* Fix PHP 8.06 compatibility.
 
 = 4.7 =
-added feature to import product cateogories tree with excel
+* Added feature to import product categories tree with excel.
 
 = 4.6 =
-extra check for wc_product return
+* Extra check for wc_product return.
 
 = 4.5 =
-fixed set_sale price
+* Fixed set_sale price.
 
 = 4.4 =
-Fix product import index based on meta - SKU on backend - update WooCommerce table wc_product_meta_lookup
+* Fix product import index based on meta - SKU on backend - update WooCommerce table wc_product_meta_lookup.
 
 = 4.3 =
-Added feature for Automatching Excel Columns to Product Fields if Excel Label the same with product field
-Fixed bug when importing Excel with empty Column
+* Added feature for Automatching Excel Columns to Product Fields if Excel Label the same with product field.
+* Fixed bug when importing Excel with empty Column.
 
 = 4.2 =
-compatibility checks, change descriptions
+* Compatibility checks, change descriptions.
 
 = 4.1 =
-Remove Sale price by adding 0 to excel cell
-Fix Setting stock to zero by adding 0 to excel cell
-Fix updating prices and stock number with values less than zero ( 0 )
+* Remove Sale price by adding 0 to excel cell.
+* Fix Setting stock to zero by adding 0 to excel cell.
+* Fix updating prices and stock number with values less than zero ( 0 ).
 
 = 4.0 =
-Replace PHPExcel Library with PHPSpreadsheet
+* Replace PHPExcel Library with PHPSpreadsheet.
 
 = 3.9 =
-fixed export duplicates
+* Fixed export duplicates.
 
 = 3.8 =
-added capability for user other than admin to access - check compatibility
+* Added capability for user other than admin to access - check compatibility.
 
 = 3.7 =
-add post status to import
+* Add post status to import.
 
 = 3.6 =
-fixed compatibility with wp 5.5
+* Fixed compatibility with wp 5.5.
 
 = 3.5 =
-added option to import also paretn product categories
+* Added option to import also parent product categories.
 
 = 3.3 =
-fixed php error on calculaction/functions.php
-checked wooCommerce 3.7 compatibility
+* Fixed php error on calculation/functions.php.
+* Checked wooCommerce 3.7 compatibility.
 
 = 3.2 =
-changed export functionality - export directly to .xlsx
+* Changed export functionality - export directly to .xlsx.
 
 = 3.1 =
-Export fix in chrome
-Check WooCommerce compatibility 3.6.5
+* Export fix in chrome.
+* Check WooCommerce compatibility 3.6.5.
 
 = 3.0 =
-Export Simple Products to Excel for WooCommerce added
-Bug fixes on import functionality
-Wordpress 5.1 compatibility.
+* Export Simple Products to Excel for WooCommerce added.
+* Bug fixes on import functionality.
+* Wordpress 5.1 compatibility.
 
 = 2.0 =
-Check Wordpress 5.0 compatibility.
-Check latest woocommerce version compatibility.
-Added Features: Import Author id, import URL Slug, Virtual Product
+* Check Wordpress 5.0 compatibility.
+* Check latest WooCommerce version compatibility.
+* Added Features: Import Author id, import URL Slug, Virtual Product.
 
 = 1.7 =
-Bug fix for decimal values on weight, prices etc.
+* Bug fix for decimal values on weight, prices etc.
 
 = 1.6 =
-Short Description field - Excerpt support for import
+* Short Description field - Excerpt support for import.
 
 = 1.5 =
-Drag n Drop for Excel Files
+* Drag n Drop for Excel Files.
 
 = 1.4 =
-If description column not selected, during update previous content will be preserved
+* If description column not selected, during update previous content will be preserved
 
 = 1.3 =
-Properly refresh the view for price changes for products - delete product_transients.
+* Properly refresh the view for price changes for products - delete product_transients.
 
 = 1.2 =
-Functionality to add multiple categories or tags from one cell comma separated
-Fix UI
-Avoid css conflicts
+* Functionality to add multiple categories or tags from one cell comma separated.
+* Fix UI.
+* Avoid css conflicts.
 
 = 1.1 =
-Fix bug with empty excel columns
+* Fix bug with empty excel columns.
 
 = 1.0 =
+* Initial release.
 
 == Upgrade Notice ==
 
-= 1.1 =
-Fix bug with empty excel columns
-
-= 1.2 =
-
-Functionality to add multiple categories or tags from one cell comma separated
-Fix UI
-Avoid css conflicts
-
-= 1.3 =
-
-Properly refresh the view for price changes for products - delete product_transients.
-
-= 1.4 =
-If description column not selected, during update previous content will be preserved
-
-= 1.5 =
-Drag n Drop for Excel Files
-
-= 1.6 =
-Short Description field - Excerpt support for import
-
-= 1.7 =
-Bug fix for decimal values on weight, prices etc.
-
-= 2.0 =
-Check Wordpress 5.0 compatibility.
-Check latest woocommerce version compatibility.
-Added Features: Import Author id, import URL Slug, Virtual Product
-
-= 3.0 =
-Export Simple Products to Excel for WooCommerce added
-Bug fixes on import functionality
-Wordpress 5.1 compatibility.
-
-= 3.1 =
-Export fix in chrome
-Check WooCommerce compatibility 3.6.5
-
-= 3.2 =
-changed export functionality - export directly to .xlsx
-
-= 3.3 =
-fixed php error on calculaction/functions.php
-checked wooCommerce 3.7 compatibility
-
-= 3.5 =
-added option to import also paretn product categories
-
-= 3.6 =
-fixed compatibility with wp 5.5
-
-= 3.7 =
-add post status to import
-
-= 3.8 =
-added capability for user other than admin to access - check compatibility
-
-= 3.9 =
-fixed export duplicates
-
-= 4.0 =
-Replace PHPExcel Library with PHPSpreadsheet
-
-= 4.1 =
-Remove Sale price by adding 0 to excel cell
-Fix Setting stock to zero by adding 0 to excel cell
-Fix updating prices and stock number with values less than zero ( 0 )
-
-= 4.2 =
-compatibility checks, change descriptions
-
-= 4.3 =
-Added feature for Automatching Excel Columns to Product Fields if Excel Label the same with product field
-Fixed bug when importing Excel with empty Column
-
-= 4.4 =
-Fix product import index based on meta - SKU on backend - update WooCommerce table wc_product_meta_lookup
-
-= 4.5 =
-fixed set_sale price
-
-= 4.6 =
-extra check for wc_product return
-
-= 4.7 =
-added feature to import product cateogories tree with excel
-
-= 4.8 =
-fix PHP 8.06 compatibility
-
-= 4.9 =
-localization fix
-
-= 5.0 =
-check PHP 8.2 compatibility
-
-= 5.1 =
-check wp compatibility
-
-= 5.2 =
-add product Image import and export functionality
-fix export issues
-
-= 5.3 =
-fix export issues
-
-= 5.4 =
-fix dismiss note
-add product gallery  import and export functionality
-
-= 5.5 =
-show signup only on plugin page
-
-= 5.6 =
-fix signup repeatedly showing
-check compatibility
-
-= 5.7 =
-run js due to popup
-
-= 5.8 =
-rewrite import code to insert products in chunks and avoid any php memory limit
-compatibility woocommerce 8.7
-
-= 5.9 =
-check woo compatibility
-
 = 6.0 =
-phpspreadsheet updated to 3.4 version
+PHPSpreadsheet updated to 3.4 version.
