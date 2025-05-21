@@ -33,20 +33,16 @@ Export your WooCommerce products in excel file to later do Inventory Stock Updat
 
 The [PRO Version](https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/ "Woo Product Importer Exporter Premium") of this wp plugin allows you to do Product Import Export for WooCommerce, **Simple or Variable with Multiple Attributes**,  **import Images & Galleries for custom fields - [ACF pro](https://www.advancedcustomfields.com/pro/ "ACF pro")**, **update products by ID, SKU** or TITLE. Moreover, **WPML compatibility** and multilingual support for product import , **Import [WooCommerce Subscription Products](https://woocommerce.com/products/woocommerce-subscriptions/ "WooCommerce Subscription Products")** , **Schedule Product Import with CRON** Job and create **Import Template** to Save Time, import **Product Categories with their Images**, all using Excel!
 
-
 = How to =
 1. Create an excel or use the sample from plugin setting's page with your data - 1st row  is the heading e.g., TITLE, 2nd row will have the product title. Use 1 row for each product. Each Column represents a field to import along with your product.
 2. Upload the excel file on Product Excel Import & Export for WooCommerce settings page.
 3. Once you upload, you will see a screen where you can map the data from the excel to the product fields of WooCommerce.
 4. Click Upload and wait. Product Import in Bulk will function with no hassle!
 
-
 Lastly, added "wpeieWoo" user capability for admin, you are free to set this capability either programmatically or with a plugin like 'User Role Editor'.
 
 = Video Instructions =
 [youtube https://www.youtube.com/watch?v=Cgf2QoyhwLs&rel=0]
-
-
 
 **PRO VERSION**
 
@@ -80,7 +76,6 @@ Lastly, added "wpeieWoo" user capability for admin, you are free to set this cap
 * Set Default Attribute Combination for Variable Products
 * Define custom separator for when importing / exporting multiple values of a field. This avoids conflicts with comma separated values , mixed with values with comma as delimiter
 
-
 -- Last but not least, define which WordPress role will access the plugin apart from Admin straight in settings page
 
 [youtube https://www.youtube.com/watch?v=wCloPECyTPo&rel=0]
@@ -89,8 +84,6 @@ Lastly, added "wpeieWoo" user capability for admin, you are free to set this cap
 [Get it Here](https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/ "Woo Product Importer Exporter PRO")
 
 [youtube https://www.youtube.com/watch?v=w8YkbMrUuMY&rel=0]
-
-
 
 == Check our other Plugins ==
 [Orders Import - Orders Export, Coupons Import Export, Reviews & Products Import/Export Bundle](https://wordpress.org/plugins/store-migration-products-orders-import-export-with-excel/")
@@ -144,7 +137,6 @@ For such a feature you can use [Users Import Export with Excel](https://wordpres
 
 = Can I update just Stock and Prices automatically with Cron? =
 For such a feature you can use [Product Stock Manager PRO](https://wordpress.org/plugins/products-stock-manager-with-excel/ "Product Stock Manager PRO").
-
 
 = Can I import Coupons and Products Reviews with this plugin? =
 For such a feature you can use [Orders, WooCommerce Subscriptions, Coupons, Reviews & Products shop Migration](https://extend-wp.com/product/products-reviews-orders-customers-woocommerce-migration-excel/ "Orders, WooCommerce Subscriptions, Coupons, Reviews & Products shop" )
