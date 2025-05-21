@@ -82,20 +82,7 @@ add_action( 'wp_ajax_nopriv_woopei_process', 'woopei_process' );
 add_action( 'wp_ajax_woopei_exportProducts', 'woopei_exportProducts' );
 add_action( 'wp_ajax_nopriv_woopei_exportProducts', 'woopei_exportProducts' );
 
-// ADD MENU LINK AND PAGE FOR WOO PRODUCT IMPORTER
-add_action( 'admin_menu', 'woopei_menu' );
-
-
 add_action( 'admin_footer', 'woopeiPopup' );
-
-function woopei_menu() {
-	/** this function adds the menu pages */
-
-	add_submenu_page( 'edit.php?post_type=product', 'Product Import Export', 'Import from Excel', 'wpeieWoo', 'woo-product-importer', 'woopei_init' );
-	add_submenu_page( 'woocommerce', 'Product Import Export', 'Import from Excel', 'wpeieWoo', 'woo-product-importer', 'woopei_init' );
-	add_menu_page( 'Woo Product Importer Settings', 'Product Import Export', 'wpeieWoo', 'woo-product-importer', 'woopei_init', 'dashicons-upload', '50' );
-}
-
 
 // ADD ACTION LINKS
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'add_woopei_links' );

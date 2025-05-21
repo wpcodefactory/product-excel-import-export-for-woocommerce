@@ -113,7 +113,48 @@ final class WPFactory_WC_PEIE {
 	 * @since   7.0.0
 	 */
 	function admin() {
-		return true;
+
+		// Settings
+		add_action( 'admin_menu', array( $this, 'add_settings' ) );
+
+	}
+
+	/**
+	 * add_settings.
+	 *
+	 * @version 7.0.0
+	 * @since   7.0.0
+	 */
+	function add_settings() {
+
+		add_submenu_page(
+			'edit.php?post_type=product',
+			'Product Import Export',
+			'Import from Excel',
+			'wpeieWoo',
+			'woo-product-importer',
+			'woopei_init'
+		);
+
+		add_submenu_page(
+			'woocommerce',
+			'Product Import Export',
+			'Import from Excel',
+			'wpeieWoo',
+			'woo-product-importer',
+			'woopei_init'
+		);
+
+		add_menu_page(
+			'Woo Product Importer Settings',
+			'Product Import Export',
+			'wpeieWoo',
+			'woo-product-importer',
+			'woopei_init',
+			'dashicons-upload',
+			'50'
+		);
+
 	}
 
 	/**
