@@ -168,6 +168,7 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 == Changelog ==
 
 = 7.0.0 - 21/05/2025 =
+* Fix - Translation loading fixed.
 * Dev - Code refactoring and cleanup.
 * WC tested up to: 9.8.
 * Tested up to: 6.8.

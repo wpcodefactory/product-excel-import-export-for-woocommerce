@@ -45,12 +45,6 @@ add_action( 'plugins_loaded', 'wpfactory_wc_peie' );
 $role = get_role( 'administrator' );
 $role->add_cap( 'wpeieWoo' );
 
-function woopei_translate() {
-	/** this function declares the translations directory  */
-	load_plugin_textdomain( 'woo-product-excel-importer', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
-}
-add_action( 'plugins_loaded', 'woopei_translate' );
-
 function woopei_js() {
 	/** this function css and js files */
 
