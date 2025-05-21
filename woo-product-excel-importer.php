@@ -7,19 +7,19 @@
  * Author: WPFactory
  * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
- * Domain Path: /languages
+ * Domain Path: /langs
  * WC requires at least: 2.2
  * WC tested up to: 9.8
  * Requires Plugins: woocommerce
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Created On: 10-05-2016
- * Updated On: 20-05-2025
+ * Updated On: 21-05-2025
  */
 
 defined( 'ABSPATH' ) || exit;
 
-defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.0-dev-20250520-1359' );
+defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.0-dev-20250521-1509' );
 
 defined( 'WPFACTORY_WC_PEIE_FILE' ) || define( 'WPFACTORY_WC_PEIE_FILE', __FILE__ );
 
@@ -47,7 +47,7 @@ $role->add_cap( 'wpeieWoo' );
 
 function woopei_translate() {
 	/** this function declares the translations directory  */
-	load_plugin_textdomain( 'woo-product-excel-importer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'woo-product-excel-importer', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 }
 add_action( 'plugins_loaded', 'woopei_translate' );
 
