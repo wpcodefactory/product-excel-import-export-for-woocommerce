@@ -114,14 +114,20 @@ final class WPFactory_WC_PEIE {
 	 */
 	function admin() {
 
+		// Load libs
+		require_once plugin_dir_path( WPFACTORY_WC_PEIE_FILE ) . 'vendor/autoload.php';
+
 		// Action links
 		add_filter(
 			'plugin_action_links_' . plugin_basename( WPFACTORY_WC_PEIE_FILE ),
 			array( $this, 'action_links' )
 		);
 
+		// "Recommendations" page
+		add_action( 'init', array( $this, 'add_cross_selling_library' ) );
+
 		// Settings
-		add_action( 'admin_menu', array( $this, 'add_settings' ) );
+		add_action( 'admin_menu', array( $this, 'add_settings' ), 11 );
 
 	}
 
@@ -150,6 +156,24 @@ final class WPFactory_WC_PEIE {
 	}
 
 	/**
+	 * add_cross_selling_library.
+	 *
+	 * @version 7.0.0
+	 * @since   7.0.0
+	 */
+	function add_cross_selling_library() {
+
+		if ( ! class_exists( '\WPFactory\WPFactory_Cross_Selling\WPFactory_Cross_Selling' ) ) {
+			return;
+		}
+
+		$cross_selling = new \WPFactory\WPFactory_Cross_Selling\WPFactory_Cross_Selling();
+		$cross_selling->setup( array( 'plugin_file_path' => WPFACTORY_WC_PEIE_FILE ) );
+		$cross_selling->init();
+
+	}
+
+	/**
 	 * add_settings.
 	 *
 	 * @version 7.0.0
@@ -157,32 +181,20 @@ final class WPFactory_WC_PEIE {
 	 */
 	function add_settings() {
 
-		add_submenu_page(
-			'edit.php?post_type=product',
-			'Product Import Export',
-			'Import from Excel',
-			'wpeieWoo',
-			'woo-product-importer',
-			'woopei_init'
-		);
+		if ( ! class_exists( 'WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu' ) ) {
+			return;
+		}
+
+		$admin_menu = WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu::get_instance();
 
 		add_submenu_page(
-			'woocommerce',
-			'Product Import Export',
-			'Import from Excel',
-			'wpeieWoo',
-			'woo-product-importer',
-			'woopei_init'
-		);
-
-		add_menu_page(
-			'Woo Product Importer Settings',
-			'Product Import Export',
+			$admin_menu->get_menu_slug(),
+			__( 'Product Import Export', 'woo-product-excel-importer' ),
+			__( 'Product Import Export', 'woo-product-excel-importer' ),
 			'wpeieWoo',
 			'woo-product-importer',
 			'woopei_init',
-			'dashicons-upload',
-			'50'
+			30
 		);
 
 	}

@@ -96,8 +96,8 @@ CONTENT EXCEL IMPORTER")
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins` directory and unzip, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Woo Product Importer menu link, 'Import from Excel' Submenu on Products or Submenu on Woocommerce or Settings link on plugins page to use the plugin.
+2. Activate the plugin through the "Plugins" screen in WordPress.
+3. Use the "WPFactory > Product Import Export" menu link, or "Settings" link on plugins page to use the plugin.
 4. Upload your excel file (there is a link for a sample excel file) and proceed to data mapping and creating your products.
 
 == Frequently Asked Questions ==
@@ -161,6 +161,8 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 
 = 7.0.0 - 21/05/2025 =
 * Fix - Translation loading fixed.
+* Dev - Plugin settings moved to the "WPFactory" menu.
+* Dev - "Recommendations" added.
 * Dev - Code refactoring and cleanup.
 * WC tested up to: 9.8.
 * Tested up to: 6.8.
