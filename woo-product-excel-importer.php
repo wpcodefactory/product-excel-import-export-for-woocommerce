@@ -84,18 +84,6 @@ add_action( 'wp_ajax_nopriv_woopei_exportProducts', 'woopei_exportProducts' );
 
 add_action( 'admin_footer', 'woopeiPopup' );
 
-// ADD ACTION LINKS
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'add_woopei_links' );
-
-function add_woopei_links( $links ) {
-	/** this function has main links in plugins' page */
-	$links[] = "<a href='" . admin_url( 'admin.php?page=woo-product-importer' ) . "'>" . esc_html__( 'Settings', 'woo-product-excel-importer' ) . '</a>';
-	$links[] = "<a target='_blank' href='https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/'>" . esc_html__( 'Go PRO', 'woo-product-excel-importer' ) . '</a>';
-	$links[] = "<a href='https://extend-wp.com' target='_blank'>" . esc_html__( 'More plugins!', 'woo-product-excel-importer' ) . '</a>';
-	return $links;
-}
-
-
 function woopei_header() {
 	/** this function is main plugin header */
 

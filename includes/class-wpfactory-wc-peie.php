@@ -114,9 +114,39 @@ final class WPFactory_WC_PEIE {
 	 */
 	function admin() {
 
+		// Action links
+		add_filter(
+			'plugin_action_links_' . plugin_basename( WPFACTORY_WC_PEIE_FILE ),
+			array( $this, 'action_links' )
+		);
+
 		// Settings
 		add_action( 'admin_menu', array( $this, 'add_settings' ) );
 
+	}
+
+	/**
+	 * action_links.
+	 *
+	 * @version 7.0.0
+	 * @since   7.0.0
+	 *
+	 * @param   mixed $links
+	 * @return  array
+	 */
+	function action_links( $links ) {
+		$custom_links = array();
+
+		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=woo-product-importer' ) . '">' .
+			__( 'Settings', 'woo-product-excel-importer' ) .
+		'</a>';
+
+		$pro_url = 'https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/';
+		$custom_links[] = '<a target="_blank" style="font-weight: bold; color: green;" href="' . $pro_url . '">' .
+			__( 'Go Pro', 'woo-product-excel-importer' ) .
+		'</a>';
+
+		return array_merge( $custom_links, $links );
 	}
 
 	/**
