@@ -159,7 +159,7 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 
 == Changelog ==
 
-= 7.0.0 - 21/05/2025 =
+= 7.0.0 - 22/05/2025 =
 * Fix - Translation loading fixed.
 * Dev - Plugin settings moved to the "WPFactory" menu.
 * Dev - "Recommendations" added.

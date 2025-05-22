@@ -143,7 +143,6 @@
 
 .importer-wrap .premium_msg{
 		display:none;
-		/*background:#F08080;*/
 		border:1px solid red;
 		text-align:center;
 		padding:10px;
@@ -376,11 +375,11 @@
 
 @media(max-width:980px){
 
-		.importer-wrap  .left_wrap, .importer-wrap .right_wrap{
-			float:none;
-			width:100%;
-			border-right:none;
-		}
+	.importer-wrap  .left_wrap, .importer-wrap .right_wrap{
+		float:none;
+		width:100%;
+		border-right:none;
+	}
 
 	#woopeiPopup .columns2{
 		width:100%;

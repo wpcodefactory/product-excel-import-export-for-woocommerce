@@ -66,7 +66,6 @@
 						type: 'POST',
 						beforeSend: function() {
 							$('.importer-wrap').addClass('loading');
-							//console.log(wpeiData);
 						},
 						success: function(response){
 							$(".result").slideDown().html($(response).find(".result").html());
@@ -175,7 +174,6 @@
 				$( this ).attr('placeholder',$( ".ui-draggable-dragging" ).attr('value'));
 				$( ".ui-draggable-dragging" ).css('visibility','hidden'); //ADDITION + LINE
 				$( this ).css('visibility','hidden'); //ADDITION + LINE
-				// alert($(this).attr('key'));
 				$( this ).parent().css('background','#90EE90');
 			  }
 
@@ -212,7 +210,6 @@
 
 									$( this ).val( key );
 
-									//$( valDrag ).css('visibility','hidden'); //ADDITION + LINE
 									$( this ).css('background','#90EE90');
 									$( this ).parent().css('background','#90EE90');
 								}
@@ -258,7 +255,7 @@
 								$(".importer-wrap .fieldsToShow").each(function(){
 									if (localStorage.getItem($(this).attr('name')) ) {
 										$(this).attr('checked', false);
-									}//else $(this).attr('checked', false);
+									}
 									localStorage.removeItem($(this).attr('name'));
 								});
 
@@ -340,7 +337,6 @@
 				var width = (start/total) * 100;
 				var elem = document.getElementById("myBar");
 				if (start >= total-1) {
-				  //clearInterval(id);
 				  elem.style.width = '100%';
 				} else {
 				  start++;
@@ -439,16 +435,14 @@
 			var dat = $(this).serialize();
 			$.ajax({
 
-				url:	"https://extend-wp.com/wp-json/signups/v2/post",
-				data:  dat,
+				url: "https://extend-wp.com/wp-json/signups/v2/post",
+				data: dat,
 				type: 'POST',
 				beforeSend: function(data) {
 						console.log(dat);
 				},
 				success: function(data){
 					alert(data);
-					//$(".woopei_notification .notice-dismiss").trigger("click");
-					//dismissWoopei();
 				},
 				complete: function(data){
 					dismissWoopei();
