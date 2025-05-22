@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Product Excel Import & Export for WooCommerce 7.0.0-dev\n"
+"Project-Id-Version: Product Excel Import & Export for WooCommerce 7.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-product-excel-importer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-20T13:52:09+00:00\n"
+"POT-Creation-Date: 2025-05-22T08:56:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: woo-product-excel-importer\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the plugin
 #: woo-product-excel-importer.php
-msgid "WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel"
+msgid "WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel."
 msgstr ""
 
 #. Author of the plugin
@@ -39,377 +39,390 @@ msgstr ""
 msgid "https://wpfactory.com"
 msgstr ""
 
-#: export.php:22
+#: export.php:25
 msgid "EXPORT SIMPLE PRODUCTS"
 msgstr ""
 
-#: export.php:25
+#: export.php:28
 msgid "Important Note: always save the generated export file in xlsx format to a new excel for import use."
 msgstr ""
 
-#: export.php:44
+#: export.php:47
 msgid "Filter & Fields to Show"
 msgstr ""
 
-#: export.php:52
+#: export.php:55
 msgid "Choose Taxonomy - PRO VERSION"
 msgstr ""
 
-#: export.php:59
+#: export.php:62
 msgid "Keywords"
 msgstr ""
 
-#: export.php:62
+#: export.php:65
 msgid "Search term"
 msgstr ""
 
-#: export.php:67
-#: export.php:253
+#: export.php:70
+#: export.php:256
 msgid "SKU"
 msgstr ""
 
-#: export.php:67
-#: export.php:75
-#: export.php:81
-#: export.php:96
-#: export.php:103
+#: export.php:70
+#: export.php:78
+#: export.php:84
+#: export.php:99
+#: export.php:106
 msgid "PRO Version"
 msgstr ""
 
-#: export.php:69
+#: export.php:72
 msgid "by SKU - PRO"
 msgstr ""
 
-#: export.php:75
+#: export.php:78
 msgid "Regular Price"
 msgstr ""
 
-#: export.php:78
+#: export.php:81
 msgid "Regular Price - PRO"
 msgstr ""
 
-#: export.php:81
+#: export.php:84
 msgid "Regular Price Selector"
 msgstr ""
 
-#: export.php:96
+#: export.php:99
 msgid "Sale Price"
 msgstr ""
 
-#: export.php:99
+#: export.php:102
 msgid "Sale Price - PRO "
 msgstr ""
 
-#: export.php:103
+#: export.php:106
 msgid "Sale Price Selector"
 msgstr ""
 
-#: export.php:119
+#: export.php:122
 msgid "Limit Results"
 msgstr ""
 
-#: export.php:122
+#: export.php:125
 msgid "Number to display.."
 msgstr ""
 
-#: export.php:124
+#: export.php:127
 msgid "Start from.."
 msgstr ""
 
-#: export.php:137
+#: export.php:140
 msgid "TAXONOMIES TO SHOW"
 msgstr ""
 
-#: export.php:137
-#: export.php:161
+#: export.php:140
+#: export.php:164
 msgid "More in PRO Version"
 msgstr ""
 
-#: export.php:161
+#: export.php:164
 msgid "FIELDS TO SHOW"
 msgstr ""
 
-#: export.php:187
+#: export.php:190
 msgid "Search"
 msgstr ""
 
-#: export.php:196
+#: export.php:199
 msgid "There are no products to export...."
 msgstr ""
 
-#: export.php:238
+#: export.php:241
 msgid "Wait... Download is loading..."
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "id"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "TITLE"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "DESCRIPTION"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "EXCERPT"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "REGULAR PRICE"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "SALE PRICE"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "WEIGHT"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "STOCK"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "STOCK STATUS"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "WIDTH"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "LENGTH"
 msgstr ""
 
-#: export.php:253
+#: export.php:256
 msgid "HEIGHT"
 msgstr ""
 
-#: export.php:253
-#: import.php:85
+#: export.php:256
+#: import.php:88
 msgid "VIRTUAL"
 msgstr ""
 
-#: export.php:267
+#: export.php:270
 msgid "ID"
 msgstr ""
 
-#: export.php:401
+#: export.php:404
 msgid "No Product Found"
 msgstr ""
 
-#: import.php:49
+#: import.php:52
 msgid " DATA MAPPING: Drag and drop excel columns on the right to product properties on the left, OR "
 msgstr ""
 
-#: import.php:49
+#: import.php:52
 msgid "Auto Match Columns"
 msgstr ""
 
-#: import.php:54
+#: import.php:57
 msgid "EXCEL COLUMNS"
 msgstr ""
 
-#: import.php:65
+#: import.php:68
 msgid "Select Parent Categories as well "
 msgstr ""
 
-#: import.php:69
+#: import.php:72
 msgid "PRODUCT FIELDS"
 msgstr ""
 
-#: import.php:71
+#: import.php:74
 msgid "POST AUTHOR"
 msgstr ""
 
-#: import.php:72
+#: import.php:75
 msgid "POST NAME"
 msgstr ""
 
-#: import.php:74
+#: import.php:77
 msgid "POST TITLE"
 msgstr ""
 
-#: import.php:75
+#: import.php:78
 msgid "POST STATUS"
 msgstr ""
 
-#: import.php:76
+#: import.php:79
 msgid "POST CONTENT"
 msgstr ""
 
-#: import.php:77
+#: import.php:80
 msgid "POST EXCERPT"
 msgstr ""
 
-#: import.php:82
+#: import.php:85
 msgid "IMAGE"
 msgstr ""
 
-#: import.php:83
+#: import.php:86
 msgid "PRODUCT IMAGE GALLERY"
 msgstr ""
 
-#: import.php:86
+#: import.php:89
 msgid "DOWNLOADABLE"
 msgstr ""
 
-#: import.php:87
+#: import.php:90
 msgid "PURCHASE NOTE"
 msgstr ""
 
-#: import.php:88
+#: import.php:91
 msgid "UPSELL IDS"
 msgstr ""
 
-#: import.php:89
+#: import.php:92
 msgid "CROSELL IDS"
 msgstr ""
 
-#: import.php:90
+#: import.php:93
 msgid "TAXABLE"
 msgstr ""
 
-#: import.php:91
+#: import.php:94
 msgid "TAX CLASS"
 msgstr ""
 
-#: import.php:92
+#: import.php:95
 msgid "CATEGORY AND TAGS"
 msgstr ""
 
-#: import.php:100
+#: import.php:103
 msgid "CUSTOM TAXONOMY"
 msgstr ""
 
-#: import.php:101
+#: import.php:104
 msgid "ATTRIBUTES"
 msgstr ""
 
-#: import.php:108
+#: import.php:111
 msgid "Upload"
 msgstr ""
 
-#: import.php:115
+#: import.php:118
 msgid "Invalid File:Please Upload Excel File"
 msgstr ""
 
-#: import.php:184
+#: import.php:187
 msgid "created"
 msgstr ""
 
-#: import.php:211
+#: import.php:214
 msgid "already exists. Updated"
 msgstr ""
 
-#: import.php:226
+#: import.php:229
 msgid "For sale price of"
 msgstr ""
 
-#: import.php:226
-#: import.php:239
-#: import.php:259
-#: import.php:269
-#: import.php:282
+#: import.php:229
+#: import.php:242
+#: import.php:262
+#: import.php:272
+#: import.php:285
 msgid "you need numbers entered"
 msgstr ""
 
-#: import.php:239
+#: import.php:242
 msgid "For regular price of"
 msgstr ""
 
-#: import.php:259
+#: import.php:262
 msgid "For sku of"
 msgstr ""
 
-#: import.php:269
+#: import.php:272
 msgid "For weight of"
 msgstr ""
 
-#: import.php:282
+#: import.php:285
 msgid "For stock of"
 msgstr ""
 
-#: import.php:361
+#: import.php:364
 msgid "- JOB DONE!"
 msgstr ""
 
-#: import.php:361
+#: import.php:364
 msgid "GO VIEW YOUR PRODUCTS!"
 msgstr ""
 
-#: import.php:374
+#: import.php:377
 msgid "Please dont close this page... Loading..."
 msgstr ""
 
-#: import_categories.php:21
+#: import_categories.php:24
 msgid "IMPORT CATEGORY TERMS "
 msgstr ""
 
-#: import_categories.php:22
+#: import_categories.php:25
 msgid "CATEGORY IMAGES in Pro Version"
 msgstr ""
 
-#: import_categories.php:23
+#: import_categories.php:26
 msgid "ATTRIBUTE TERMS in Pro Version"
 msgstr ""
 
-#: import_categories.php:31
+#: import_categories.php:34
 msgid "Sample File for importing Categories. Upload it using the form below."
 msgstr ""
 
-#: import_categories.php:33
+#: import_categories.php:36
 msgid "sample"
 msgstr ""
 
-#: import_categories.php:39
+#: import_categories.php:42
 msgid "YITH woocommerce color and labels variations plugin"
 msgstr ""
 
-#: import_categories.php:39
-#: import_categories.php:46
-#: import_categories.php:54
+#: import_categories.php:42
+#: import_categories.php:49
+#: import_categories.php:57
 msgid "supported in"
 msgstr ""
 
-#: import_categories.php:39
-#: import_categories.php:46
-#: import_categories.php:54
+#: import_categories.php:42
+#: import_categories.php:49
+#: import_categories.php:57
 msgid "Pro Version "
 msgstr ""
 
-#: import_categories.php:46
+#: import_categories.php:49
 msgid "Woo Variation swatches"
 msgstr ""
 
-#: import_categories.php:54
-#: woo-product-excel-importer.php:249
+#: import_categories.php:57
+#: woo-product-excel-importer.php:233
 msgid "Perfect Brands for WooCommerce"
 msgstr ""
 
-#: import_categories.php:82
+#: import_categories.php:85
 msgid " - in Pro"
 msgstr ""
 
-#: import_categories.php:104
+#: import_categories.php:107
 msgid "Import Terms"
 msgstr ""
 
-#: import_categories.php:146
-#: import_categories.php:167
-#: import_categories.php:200
+#: import_categories.php:149
+#: import_categories.php:170
+#: import_categories.php:203
 msgid "exists"
 msgstr ""
 
-#: import_categories.php:158
-#: import_categories.php:190
-#: import_categories.php:196
-#: import_categories.php:222
+#: import_categories.php:161
+#: import_categories.php:193
+#: import_categories.php:199
+#: import_categories.php:225
 msgid "imported successfully"
+msgstr ""
+
+#: includes/class-wpfactory-wc-peie.php:147
+msgid "Settings"
+msgstr ""
+
+#: includes/class-wpfactory-wc-peie.php:152
+msgid "Go Pro"
+msgstr ""
+
+#: includes/class-wpfactory-wc-peie.php:192
+#: includes/class-wpfactory-wc-peie.php:193
+msgid "Product Import Export"
 msgstr ""
 
 #: lib/codecabin/plugin-deactivation-survey/deactivate-feedback-form.php:29
@@ -480,159 +493,147 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: woo-product-excel-importer.php:92
-msgid "Settings"
-msgstr ""
-
-#: woo-product-excel-importer.php:93
-msgid "Go PRO"
-msgstr ""
-
-#: woo-product-excel-importer.php:94
-msgid "More plugins!"
-msgstr ""
-
-#: woo-product-excel-importer.php:155
+#: woo-product-excel-importer.php:139
 msgid "Import / Update simple WooCommerce products."
 msgstr ""
 
-#: woo-product-excel-importer.php:156
+#: woo-product-excel-importer.php:140
 msgid "sample xlsx"
 msgstr ""
 
-#: woo-product-excel-importer.php:176
+#: woo-product-excel-importer.php:160
 msgid "Import/Update Products"
 msgstr ""
 
-#: woo-product-excel-importer.php:177
+#: woo-product-excel-importer.php:161
 msgid "Export Products"
 msgstr ""
 
-#: woo-product-excel-importer.php:178
+#: woo-product-excel-importer.php:162
 msgid "Import Categories"
 msgstr ""
 
-#: woo-product-excel-importer.php:192
+#: woo-product-excel-importer.php:176
 msgid "Delete Products"
 msgstr ""
 
-#: woo-product-excel-importer.php:193
-#: woo-product-excel-importer.php:249
+#: woo-product-excel-importer.php:177
+#: woo-product-excel-importer.php:233
 msgid "Delete Categories"
 msgstr ""
 
-#: woo-product-excel-importer.php:194
+#: woo-product-excel-importer.php:178
 msgid "PRO version"
 msgstr ""
 
-#: woo-product-excel-importer.php:195
+#: woo-product-excel-importer.php:179
 msgid "Instructions"
 msgstr ""
 
-#: woo-product-excel-importer.php:197
+#: woo-product-excel-importer.php:181
 msgid "more extensions"
 msgstr ""
 
-#: woo-product-excel-importer.php:239
+#: woo-product-excel-importer.php:223
 msgid "Go PRO and get more important features!"
 msgstr ""
 
-#: woo-product-excel-importer.php:240
+#: woo-product-excel-importer.php:224
 msgid "Import / Update Simple, Variable, Affiliate/External Products with unlimited Attributes + more fields"
 msgstr ""
 
-#: woo-product-excel-importer.php:241
+#: woo-product-excel-importer.php:225
 msgid "Import / Export"
 msgstr ""
 
-#: woo-product-excel-importer.php:241
+#: woo-product-excel-importer.php:225
 msgid "Subscription Products"
 msgstr ""
 
-#: woo-product-excel-importer.php:242
+#: woo-product-excel-importer.php:226
 msgid "Import Product Featured Image and Image Gallery"
 msgstr ""
 
-#: woo-product-excel-importer.php:243
+#: woo-product-excel-importer.php:227
 msgid "Import WPML WooCommerce Product Translations with Excel"
 msgstr ""
 
-#: woo-product-excel-importer.php:244
+#: woo-product-excel-importer.php:228
 msgid "Import / Export ACF custom Product fields and manually defined fields"
 msgstr ""
 
-#: woo-product-excel-importer.php:245
+#: woo-product-excel-importer.php:229
 msgid "Import / Export YOAST SEO Meta Product fields"
 msgstr ""
 
-#: woo-product-excel-importer.php:246
+#: woo-product-excel-importer.php:230
 msgid "Import Product Categories with their Images"
 msgstr ""
 
-#: woo-product-excel-importer.php:247
+#: woo-product-excel-importer.php:231
 msgid "import gallery images for custom fields like in ACF PRO"
 msgstr ""
 
-#: woo-product-excel-importer.php:248
+#: woo-product-excel-importer.php:232
 msgid "Import Custom Taxonomies along with Products"
 msgstr ""
 
-#: woo-product-excel-importer.php:249
+#: woo-product-excel-importer.php:233
 msgid "Compatible with"
 msgstr ""
 
-#: woo-product-excel-importer.php:249
+#: woo-product-excel-importer.php:233
 msgid "Variation Swatches for WooCommerce"
 msgstr ""
 
-#: woo-product-excel-importer.php:249
+#: woo-product-excel-importer.php:233
 msgid "Variation Images Gallery"
 msgstr ""
 
-#: woo-product-excel-importer.php:249
+#: woo-product-excel-importer.php:233
 msgid "YITH WooCommerce Color and Label Variations"
 msgstr ""
 
-#: woo-product-excel-importer.php:250
+#: woo-product-excel-importer.php:234
 msgid "Save Fields Mapping Template to save Time"
 msgstr ""
 
-#: woo-product-excel-importer.php:251
+#: woo-product-excel-importer.php:235
 msgid "Schedule Product Import / Update with Cron Job from excel URL or Google sheets"
 msgstr ""
 
-#: woo-product-excel-importer.php:252
+#: woo-product-excel-importer.php:236
 msgid "GET IT HERE"
 msgstr ""
 
-#: woo-product-excel-importer.php:268
+#: woo-product-excel-importer.php:252
 msgid "You like this plugin? "
 msgstr ""
 
-#: woo-product-excel-importer.php:269
+#: woo-product-excel-importer.php:253
 msgid "Then please give us a good review "
 msgstr ""
 
-#: woo-product-excel-importer.php:272
+#: woo-product-excel-importer.php:256
 msgid " here"
 msgstr ""
 
-#: woo-product-excel-importer.php:411
+#: woo-product-excel-importer.php:394
 msgid "Extend your WordPress functionality with Extend-WP.com well crafted Premium Plugins!"
 msgstr ""
 
-#: woo-product-excel-importer.php:419
+#: woo-product-excel-importer.php:402
 msgid "Get it here"
 msgstr ""
 
-#: woo-product-excel-importer.php:469
+#: woo-product-excel-importer.php:450
 msgid "Add your Email below & get "
 msgstr ""
 
-#: woo-product-excel-importer.php:469
+#: woo-product-excel-importer.php:450
 msgid " in our pro plugins at"
 msgstr ""
 
-#: woo-product-excel-importer.php:474
+#: woo-product-excel-importer.php:455
 msgid "Sign up"
 msgstr ""
