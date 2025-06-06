@@ -4,7 +4,7 @@ Tags:  product import, excel import, product export, import products, bulk impor
 Requires at least: 3.0.1
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 7.0.0
+Stable tag: 7.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -158,6 +158,9 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 4. WordPress Product Excel Import & Export Functionality
 
 == Changelog ==
+
+= 7.0.1 - 06/06/2025 =
+* Dev - Updated plugin icon and banner.
 
 = 7.0.0 - 22/05/2025 =
 * Fix - Translation loading fixed.
