@@ -1,10 +1,10 @@
 === Product Excel Import & Export for WooCommerce ===
-Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas
+Contributors: wpcodefactory, anbinder, karzin, omardabbas
 Tags:  product import, excel import, product export, import products, bulk import
 Requires at least: 3.0.1
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 7.0.2
+Stable tag: 7.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -158,6 +158,11 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 4. WordPress Product Excel Import & Export Functionality
 
 == Changelog ==
+
+= 7.0.3 - 13/10/2025 =
+* WPFactory Admin Menu - Library updated (to v1.0.8).
+* WPFactory Recommendations - Library updated (to v1.0.6).
+* WC tested up to: 10.2.
 
 = 7.0.2 - 10/06/2025 =
 * Fix - Fix plugin icon.
