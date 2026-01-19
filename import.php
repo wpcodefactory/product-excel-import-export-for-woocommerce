@@ -30,12 +30,9 @@ function woopei_importProducts() {
 			if ( isset( $_FILES['file']['type'] ) && $_FILES['file']['type'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ) {
 
 				$objPHPExcel = IOFactory::load( $filename );
-
-				$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray( null, true, true, true );
-				$data           = count( $allDataInSheet );
-				// Here get total count of row in that Excel sheet
-				$total  = $data;
-				$totals = $total - 1;
+                $sheet = $objPHPExcel->getActiveSheet();
+                $total = $sheet->getHighestDataRow(); // ignores empty rows.
+                $totals = max( 0, $total - 1 );
 
 				$rownumber    = 1;
 				$row          = $objPHPExcel->getActiveSheet()->getRowIterator( $rownumber )->current();
@@ -104,8 +101,8 @@ function woopei_importProducts() {
 					echo '<p>' . esc_html__( 'ATTRIBUTES', 'woo-product-excel-importer' ) . " <input type='text' name='product_attr' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
 				?>
 
-					<input type='hidden' name='finalupload' value='<?php print esc_attr( $total ); ?>' />
-					<input type='hidden' name='start' value='2' />
+					<input type='hidden' name='finalupload' value='<?php print esc_attr( $totals ); ?>' />
+					<input type='hidden' name='start' value='1' />
 					<input type='hidden' name='action' value='woopei_process' />
 				<?php wp_nonce_field( 'excel_process', 'secNonce' );
 				submit_button( esc_html__( 'Upload', 'woo-product-excel-importer' ), 'primary', 'check' );
@@ -135,7 +132,7 @@ function woopei_process() {
 		$data           = count( $allDataInSheet );  // Here get total count of row in that Excel sheet
 
 		// parameters for running with ajax - no php timeouts
-		$i     = sanitize_text_field( wp_unslash( $_POST['start'] ) );
+		$i     = absint( $_POST['start'] ?? 1 ) + 1;
 		$start = $i - 1;
 
 		$images         = array();
@@ -358,7 +355,8 @@ function woopei_process() {
 			$product->save();
 		}
 
-		$finalUpload = wp_unslash( $_POST['finalupload'] );
+        $i -= 1;
+		$finalUpload = absint( $_POST['finalupload'] );
 		if ( $i === $finalUpload ) {
 
 			print "<div class='importMessageSussess'><h2>" . esc_html( $i ) . ' / ' . esc_html( $finalUpload ) . ' ' . esc_html__( '- JOB DONE!', 'woo-product-excel-importer' ) . " <a href='" . esc_url( admin_url( 'edit.php?post_type=product' ) ) . "' target='_blank'><i class='fa fa-eye'></i> " . esc_html__( 'GO VIEW YOUR PRODUCTS!', 'woo-product-excel-importer' ) . '</a></h2></div>';
