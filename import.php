@@ -37,9 +37,10 @@ function woopei_importProducts() {
 			if ( isset( $_FILES['file']['type'] ) && $_FILES['file']['type'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ) {
 
 				$objPHPExcel = IOFactory::load( $filename );
-				$sheet       = $objPHPExcel->getActiveSheet();
-				$total       = $sheet->getHighestDataRow(); // ignores empty rows.
-				$totals      = max( 0, $total - 1 );
+
+				$sheet  = $objPHPExcel->getActiveSheet();
+				$total  = $sheet->getHighestDataRow(); // ignores empty rows.
+				$totals = max( 0, $total - 1 );
 
 				$rownumber    = 1;
 				$row          = $objPHPExcel->getActiveSheet()->getRowIterator( $rownumber )->current();
