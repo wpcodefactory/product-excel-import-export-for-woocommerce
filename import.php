@@ -1,6 +1,8 @@
 <?php
 /**
- * Product Excel Import & Export for WooCommerce - woopei_importProducts Class
+ * Product Excel Import & Export for WooCommerce - Import
+ *
+ * @version 7.0.4
  *
  * @author  WPFactory
  */
@@ -15,7 +17,12 @@ use PhpOffice\PhpSpreadsheet\Helper\Sample;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-// PROCESS
+
+/**
+ * woopei_importProducts.
+ *
+ * @version 7.0.4
+ */
 function woopei_importProducts() {
 
 	if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' && current_user_can( 'wpeieWoo' ) && isset( $_POST['importProducts'] ) ) {
@@ -30,9 +37,9 @@ function woopei_importProducts() {
 			if ( isset( $_FILES['file']['type'] ) && $_FILES['file']['type'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ) {
 
 				$objPHPExcel = IOFactory::load( $filename );
-                $sheet = $objPHPExcel->getActiveSheet();
-                $total = $sheet->getHighestDataRow(); // ignores empty rows.
-                $totals = max( 0, $total - 1 );
+				$sheet       = $objPHPExcel->getActiveSheet();
+				$total       = $sheet->getHighestDataRow(); // ignores empty rows.
+				$totals      = max( 0, $total - 1 );
 
 				$rownumber    = 1;
 				$row          = $objPHPExcel->getActiveSheet()->getRowIterator( $rownumber )->current();
@@ -118,6 +125,11 @@ function woopei_importProducts() {
 	}
 }
 
+/**
+ * woopei_process.
+ *
+ * @version 7.0.4
+ */
 function woopei_process() {
 
 	if ( isset( $_POST['finalupload'] ) && current_user_can( 'wpeieWoo' ) ) {
@@ -355,7 +367,7 @@ function woopei_process() {
 			$product->save();
 		}
 
-        $i -= 1;
+		$i -= 1;
 		$finalUpload = absint( $_POST['finalupload'] );
 		if ( $i === $finalUpload ) {
 
