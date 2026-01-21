@@ -3,23 +3,23 @@
  * Plugin Name: Product Excel Import & Export for WooCommerce
  * Plugin URI: https://extend-wp.com/product-import-export-for-woocommerce-with-excel/
  * Description: WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel.
- * Version: 7.0.3
+ * Version: 7.0.4
  * Author: WPFactory
  * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
  * Domain Path: /langs
  * WC requires at least: 2.2
- * WC tested up to: 10.2
+ * WC tested up to: 10.4
  * Requires Plugins: woocommerce
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Created On: 10-05-2016
- * Updated On: 10-06-2025
+ * Updated On: 21-01-2026
  */
 
 defined( 'ABSPATH' ) || exit;
 
-defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.3' );
+defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '7.0.4' );
 
 defined( 'WPFACTORY_WC_PEIE_FILE' ) || define( 'WPFACTORY_WC_PEIE_FILE', __FILE__ );
 
