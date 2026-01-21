@@ -25,16 +25,29 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
  */
 function woopei_importProducts() {
 
-	if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' && current_user_can( 'wpeieWoo' ) && isset( $_POST['importProducts'] ) ) {
+	if (
+		isset( $_SERVER['REQUEST_METHOD'] ) &&
+		'POST' === $_SERVER['REQUEST_METHOD'] &&
+		current_user_can( 'wpeieWoo' ) &&
+		isset( $_POST['importProducts'] )
+	) {
 
 		check_admin_referer( 'excel_upload' );
 		check_ajax_referer( 'excel_upload' );
 
-		if ( isset( $_FILES['file']['tmp_name'] ) ) $filename = $_FILES['file']['tmp_name'] ;
+		if ( isset( $_FILES['file']['tmp_name'] ) ) {
+			$filename = $_FILES['file']['tmp_name'] ;
+		}
 
-		if ( isset( $_FILES['file']['size'] ) && $_FILES['file']['size'] > 0 ) {
+		if (
+			isset( $_FILES['file']['size'] ) &&
+			$_FILES['file']['size'] > 0
+		) {
 
-			if ( isset( $_FILES['file']['type'] ) && $_FILES['file']['type'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ) {
+			if (
+				isset( $_FILES['file']['type'] ) &&
+				'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' === $_FILES['file']['type']
+			) {
 
 				$objPHPExcel = IOFactory::load( $filename );
 
