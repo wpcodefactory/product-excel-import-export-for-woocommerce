@@ -159,6 +159,10 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 
 == Changelog ==
 
+= 7.0.6 - 26/10/2026 =
+* Dev - Cleaned up plugin files to fix Plugin Check errors (hidden files, dev-only files, Word lock file and badly named files removed).
+* Dev - Moved the PhpSpreadsheet "PHP Charting Libraries" reference to documentation/php-charting-libraries.txt.
+
 = 7.0.5 - 24/05/2026 =
 * Tested up to: 7.0.
 * WC tested up to: 10.7.

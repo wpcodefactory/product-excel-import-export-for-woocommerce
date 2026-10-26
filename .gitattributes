@@ -9,6 +9,15 @@ composer.lock export-ignore
 
 # Composer
 composer.json
-composer.lock export ignore
+composer.lock export-ignore
 includes/pro/composer.lock export-ignore
 includes/pro/composer.json
+
+# Plugin Check: hidden files are not permitted in the plugin zip.
+.gitattributes export-ignore
+.distignore export-ignore
+.idea export-ignore
+/Classes/**/.* export-ignore
+
+# Plugin Check: application (dev tooling) files are not permitted in the plugin zip.
+/Classes/**/*.dist export-ignore
