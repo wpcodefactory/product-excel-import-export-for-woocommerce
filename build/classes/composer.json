@@ -1,0 +1,15 @@
+{
+    "name": "wpfactory/woo-product-excel-importer-classes",
+    "description": "Build manifest for the plugin's vendored Classes/ directory. Run `composer install` in this folder, then move vendor/autoload.php, vendor/composer and the package directories into Classes/. Excluded from the plugin zip via .gitattributes.",
+    "type": "project",
+    "require": {
+        "phpoffice/phpspreadsheet": "3.10.8"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "platform": {
+            "php": "8.1.0"
+        },
+        "sort-packages": true
+    }
+}

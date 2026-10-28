@@ -13,6 +13,9 @@ composer.lock export-ignore
 includes/pro/composer.lock export-ignore
 includes/pro/composer.json
 
+# Build tooling for the vendored Classes/ directory (not part of the plugin).
+/build/ export-ignore
+
 # Plugin Check: hidden files are not permitted in the plugin zip.
 .gitattributes export-ignore
 .distignore export-ignore
@@ -22,3 +25,8 @@ includes/pro/composer.json
 # Plugin Check: application (dev tooling) files are not permitted in the plugin zip.
 /Classes/**/*.dist export-ignore
 /Classes/**/*.dist.* export-ignore
+
+# Large generated bundles: treat as binary so git/VS Code never try to word-diff them.
+js/xlsx.js -diff
+js/tableexport.js -diff
+*.min.js -diff

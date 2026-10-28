@@ -10,7 +10,7 @@
  * Domain Path: /langs
  * Requires at least: 5.9
  * WC requires at least: 2.2
- * WC tested up to: 10.7
+ * WC tested up to: 11.2
  * Requires Plugins: woocommerce
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html

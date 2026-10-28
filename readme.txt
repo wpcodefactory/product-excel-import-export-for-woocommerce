@@ -181,7 +181,7 @@ No other data is ever transmitted to extend-wp.com, and no third-party tracking 
 * Dev - Enqueued scripts and styles now use the plugin version; removed redundant enqueue calls and the discouraged load_plugin_textdomain() call; minimum WordPress version raised to 5.9.
 * Dev - Deactivation survey library now blocks direct file access.
 * Tested up to: 7.1.
-* WC tested up to: 10.7.
+* WC tested up to: 11.2.
 
 = 7.0.5 - 24/05/2026 =
 * Tested up to: 7.0.
