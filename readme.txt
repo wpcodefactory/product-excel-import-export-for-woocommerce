@@ -1,10 +1,10 @@
 === Product Excel Import & Export for WooCommerce ===
 Contributors: wpcodefactory, anbinder, karzin, omardabbas
 Tags:  product import, excel import, product export, import products, bulk import
-Requires at least: 4.6
+Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 7.0.6
+Stable tag: 7.0.6-dev
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

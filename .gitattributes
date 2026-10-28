@@ -21,3 +21,4 @@ includes/pro/composer.json
 
 # Plugin Check: application (dev tooling) files are not permitted in the plugin zip.
 /Classes/**/*.dist export-ignore
+/Classes/**/*.dist.* export-ignore

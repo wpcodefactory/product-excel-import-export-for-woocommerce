@@ -8,7 +8,7 @@
  * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
  * Domain Path: /langs
- * Requires at least: 4.6
+ * Requires at least: 5.9
  * WC requires at least: 2.2
  * WC tested up to: 10.7
  * Requires Plugins: woocommerce
@@ -54,15 +54,11 @@ function woopei_js() {
 	 */
 
 	wp_enqueue_style( 'woo-importer_css', plugins_url( '/css/woo-importer.css', __FILE__ ), array(), WPFACTORY_WC_PEIE_VERSION );
-	wp_enqueue_style( 'woo-importer_css' );
 
 	wp_enqueue_script( 'woo-importer-xlsx', plugins_url( '/js/xlsx.js', __FILE__ ), array( 'jquery' ), WPFACTORY_WC_PEIE_VERSION, true );
-	wp_enqueue_script( 'woo-importer-xlsx' );
 	wp_enqueue_script( 'woo-importer-filesaver', plugins_url( '/js/filesaver.js', __FILE__ ), array( 'jquery' ), WPFACTORY_WC_PEIE_VERSION, true );
-	wp_enqueue_script( 'woo-importer-filesaver' );
 
 	wp_enqueue_script( 'woopei_js', plugins_url( '/js/woo-importer.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-droppable' ), WPFACTORY_WC_PEIE_VERSION, true );
-	wp_enqueue_script( 'woopei_js' );
 
 	$hide_rating = esc_js( get_option( 'woopei_hide_rating' ) );
 	$woopei      = array(
