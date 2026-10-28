@@ -143,7 +143,7 @@
 												$(".importer-wrap .ajaxResponse").html(response);
 												$(".importer-wrap .thisNum").html($("#AjaxNumber").html() );
 
-													$(".importer-wrap input[name='start']").val(i + 1 );
+												$(".importer-wrap input[name='start']").val(i );
 													i++;
 
 											},complete: function(response){
@@ -434,15 +434,12 @@
 
 		$("#woopei_signup").on('submit',function(e){
 			e.preventDefault();
-			var dat = $(this).serialize();
+			var dat = $(this).serialize() + '&action=woopei_signup';
 			$.ajax({
 
-				url: "https://extend-wp.com/wp-json/signups/v2/post",
+				url: woopei.ajax_url,
 				data: dat,
 				type: 'POST',
-				beforeSend: function(data) {
-						console.log(dat);
-				},
 				success: function(data){
 					alert(data);
 				},

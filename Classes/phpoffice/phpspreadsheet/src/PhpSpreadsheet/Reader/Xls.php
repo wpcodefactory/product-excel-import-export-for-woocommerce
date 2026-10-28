@@ -234,7 +234,7 @@ class Xls extends XlsBase
      * The current MD5 context state.
      * It is never set in the program, so code which uses it is suspect.
      */
-    private string $md5Ctxt; // @phpstan-ignore-line
+    private string $md5Ctxt = '';
 
     protected int $textObjRef;
 
@@ -3486,9 +3486,9 @@ class Xls extends XlsBase
         if ($this->getReadFilter() !== null) {
             $includeCellRange = false;
             $rangeBoundaries = Coordinate::getRangeBoundaries($cellRangeAddress);
-            ++$rangeBoundaries[1][0];
+            StringHelper::stringIncrement($rangeBoundaries[1][0]);
             for ($row = $rangeBoundaries[0][1]; $row <= $rangeBoundaries[1][1]; ++$row) {
-                for ($column = $rangeBoundaries[0][0]; $column != $rangeBoundaries[1][0]; ++$column) {
+                for ($column = $rangeBoundaries[0][0]; $column != $rangeBoundaries[1][0]; StringHelper::stringIncrement($column)) {
                     if ($this->getReadFilter()->readCell($column, $row, $this->phpSheet->getTitle())) {
                         $includeCellRange = true;
 

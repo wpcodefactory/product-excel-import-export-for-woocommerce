@@ -84,10 +84,13 @@ class Csv extends BaseReader
      */
     private static $constructorCallback;
 
+    /** Will be changed to false in next major release */
+    public const DEFAULT_TEST_AUTODETECT = true;
+
     /**
      * Attempt autodetect line endings (deprecated after PHP8.1)?
      */
-    private bool $testAutodetect = true;
+    private bool $testAutodetect = self::DEFAULT_TEST_AUTODETECT;
 
     protected bool $castFormattedNumberToNumeric = false;
 
@@ -449,7 +452,7 @@ class Csv extends BaseReader
                     // Set cell value
                     $sheet->getCell($columnLetter . $outRow)->setValue($rowDatum);
                 }
-                ++$columnLetter;
+                StringHelper::stringIncrement($columnLetter);
             }
             $rowData = self::getCsv($fileHandle, 0, $delimiter, $this->enclosure, $this->escapeCharacter);
             ++$currentRow;

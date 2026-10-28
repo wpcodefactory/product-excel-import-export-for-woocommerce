@@ -69,6 +69,7 @@ function woopei_js() {
 		'ajax_url'         => admin_url( 'admin-ajax.php' ),
 		'nonce'            => wp_create_nonce( 'wp_rest' ),
 		'extensions_nonce' => wp_create_nonce( 'woopei_extensions' ),
+		'signup_nonce'     => wp_create_nonce( 'woopei_signup' ),
 		'exportfile'       => plugins_url( '/js/tableexport.js', __FILE__ ),
 	);
 	wp_localize_script( 'woopei_js', 'woopei', $woopei );
@@ -456,7 +457,11 @@ function woopei_deact_hook() {
 add_action( 'admin_notices', 'woopei_notification' );
 
 function woopei_notification() {
-	/** this function provides ability to subscribe */
+	/**
+	 * This function provides ability to subscribe.
+	 *
+	 * @version 7.0.6
+	 */
 	$screen = get_current_screen();
 	if ( 'toplevel_page_woo-product-importer' !== $screen->base ) {
 		return;
@@ -470,6 +475,7 @@ function woopei_notification() {
 
 			<h4><i>Product Import Export | <?php esc_html_e( 'Add your Email below & get ', 'woo-product-excel-importer' ); ?><strong>discounts</strong><?php esc_html_e( ' in our pro plugins at', 'woo-product-excel-importer' ); ?> <a href='https://extend-wp.com' target='_blank' >extend-wp.com!</a></i></h4>
 			<form method='post' id='woopei_signup'>
+				<?php wp_nonce_field( 'woopei_signup', 'woopei_signup_nonce' ); ?>
 				<p>
 				<input required type='email' name='woopei_email' />
 				<input required type='hidden' name='product' value='218' />
@@ -488,6 +494,46 @@ function woopei_push_not() {
 
 	delete_transient( 'woopei_notification' );
 	set_transient( 'woopei_notified', true );
+}
+
+add_action( 'wp_ajax_woopei_signup', 'woopei_signup' );
+
+/**
+ * Forwards the admin email signup form to extend-wp.com.
+ *
+ * @since  7.0.6
+ * @version 7.0.6
+ */
+function woopei_signup() {
+
+	check_ajax_referer( 'woopei_signup', 'woopei_signup_nonce' );
+
+	if ( ! current_user_can( 'wpeieWoo' ) ) {
+		wp_send_json_error( array( 'message' => 'Permission denied.' ), 403 );
+	}
+
+	$email = isset( $_POST['woopei_email'] ) ? sanitize_email( wp_unslash( $_POST['woopei_email'] ) ) : '';
+
+	if ( ! $email ) {
+		wp_send_json_error( array( 'message' => 'Invalid email address.' ), 400 );
+	}
+
+	$response = wp_remote_post(
+		'https://extend-wp.com/wp-json/signups/v2/post',
+		array(
+			'timeout' => 10,
+			'body'    => array(
+				'woopei_email' => $email,
+				'product'      => 218,
+			),
+		)
+	);
+
+	if ( is_wp_error( $response ) ) {
+		wp_send_json_error( array( 'message' => $response->get_error_message() ) );
+	}
+
+	wp_send_json( wp_remote_retrieve_body( $response ) );
 }
 
 add_action( 'wp_ajax_nopriv_woopei_hide_rating', 'woopei_hide_rating' );

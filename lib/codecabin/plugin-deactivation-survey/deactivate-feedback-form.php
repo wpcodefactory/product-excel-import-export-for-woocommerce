@@ -35,6 +35,8 @@ add_action('admin_enqueue_scripts', function() {
 	
 	// Localized strings
 	wp_localize_script('codecabin-deactivate-feedback-form', 'codecabin_deactivate_feedback_form_strings', array(
+		'ajax_url'					=> admin_url( 'admin-ajax.php' ),
+		'nonce'						=> wp_create_nonce( 'woopei_deactivate_feedback' ),
 		'quick_feedback'			=> __('We are sorry to see you go...', 'woo-product-excel-importer'),
 		'foreword'					=> __('If you would be kind enough, please tell us why you\'re deactivating?', 'woo-product-excel-importer'),
 		'better_plugins_name'		=> __('Please tell us which plugin?', 'woo-product-excel-importer'),
@@ -81,4 +83,37 @@ add_action('admin_enqueue_scripts', function() {
 add_filter('codecabin_deactivate_feedback_form_plugins', function($plugins) {
 	return $plugins;
 });
+
+/**
+ * Forwards the deactivation feedback form to extend-wp.com.
+ *
+ * @since  7.0.6
+ * @version 7.0.6
+ */
+add_action( 'wp_ajax_woopei_deactivate_feedback', function () {
+
+	check_ajax_referer( 'woopei_deactivate_feedback', 'nonce' );
+
+	if ( ! current_user_can( 'deactivate_plugins' ) ) {
+		wp_send_json_error( array( 'message' => 'Permission denied.' ), 403 );
+	}
+
+	$body = array();
+
+	foreach ( array( 'plugin', 'slug', 'version', 'reason', 'comments' ) as $field ) {
+		if ( isset( $_POST[ $field ] ) ) {
+			$body[ $field ] = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
+		}
+	}
+
+	$response = wp_remote_post(
+		'https://extend-wp.com/wp-json/feedback/v2/post',
+		array(
+			'timeout' => 10,
+			'body'    => $body,
+		)
+	);
+
+	wp_send_json( array( 'ok' => ! is_wp_error( $response ) ) );
+} );
 

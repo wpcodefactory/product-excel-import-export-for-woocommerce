@@ -2,6 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
+use Composer\Pcre\Preg;
 use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 use ZipArchive;
 
@@ -89,30 +90,64 @@ class Drawing extends BaseDrawing
      * @param string $path File path
      * @param bool $verifyFile Verify file
      * @param ?ZipArchive $zip Zip archive instance
+     * @param null|callable(string):bool $isWhitelisted
      *
      * @return $this
      */
-    public function setPath(string $path, bool $verifyFile = true, ?ZipArchive $zip = null): static
+    public function setPath(string $path, bool $verifyFile = true, ?ZipArchive $zip = null, bool $allowExternal = true, ?callable $isWhitelisted = null): static
     {
         $this->isUrl = false;
-        if (preg_match('~^data:image/[a-z]+;base64,~', $path) === 1) {
+        if (Preg::isMatch('~^data:image/[a-z]+;base64,~', $path)) {
             $this->path = $path;
 
             return $this;
         }
 
         $this->path = '';
+        if ($zip instanceof ZipArchive) {
+            $zipPath = explode('#', $path)[1];
+            $locate = @$zip->locateName($zipPath);
+            if ($locate !== false) {
+                if ($this->isImage($path)) {
+                    $this->path = $path;
+                    $this->setSizesAndType($path);
+                }
+            }
         // Check if a URL has been passed. https://stackoverflow.com/a/2058596/1252979
-        if (filter_var($path, FILTER_VALIDATE_URL)) {
-            if (!preg_match('/^(http|https|file|ftp|s3):/', $path)) {
+        } elseif (
+            filter_var($path, FILTER_VALIDATE_URL)
+            || Preg::isMatch('~^phar://~i', $path)
+            || (Preg::isMatch('/^([\w.\s\x00-\x1f]+):/', $path) && !Preg::isMatch('/^([\w.]+):/', $path))
+        ) {
+            if (!Preg::isMatch('/^(http|https|file|ftp|s3):/', $path)) {
                 throw new PhpSpreadsheetException('Invalid protocol for linked drawing');
+            }
+            if (!$allowExternal) {
+                return $this;
+            }
+            if ($isWhitelisted !== null && !$isWhitelisted($path)) {
+                return $this;
             }
             // Implicit that it is a URL, rather store info than running check above on value in other places.
             $this->isUrl = true;
             $ctx = null;
             // https://github.com/php/php-src/issues/16023
-            if (str_starts_with($path, 'https:')) {
-                $ctx = stream_context_create(['ssl' => ['crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT]]);
+            // https://github.com/php/php-src/issues/17121
+            if (str_starts_with($path, 'https:') || str_starts_with($path, 'http:')) {
+                $ctxArray = [
+                    'http' => [
+                        'follow_location' => 0,
+                        'user_agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                        'header' => [
+                            //'Connection: keep-alive', // unacceptable performance
+                            'Accept: image/*;q=0.9,*/*;q=0.8',
+                        ],
+                    ],
+                ];
+                if (str_starts_with($path, 'https:')) {
+                    $ctxArray['ssl'] = ['crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT];
+                }
+                $ctx = stream_context_create($ctxArray);
             }
             $imageContents = @file_get_contents($path, false, $ctx);
             if ($imageContents !== false) {
@@ -128,15 +163,6 @@ class Drawing extends BaseDrawing
                     }
                 }
             }
-        } elseif ($zip instanceof ZipArchive) {
-            $zipPath = explode('#', $path)[1];
-            $locate = @$zip->locateName($zipPath);
-            if ($locate !== false) {
-                if ($this->isImage($path)) {
-                    $this->path = $path;
-                    $this->setSizesAndType($path);
-                }
-            }
         } else {
             $exists = @file_exists($path);
             if ($exists !== false && $this->isImage($path)) {
@@ -146,6 +172,12 @@ class Drawing extends BaseDrawing
         }
         if ($this->path === '' && $verifyFile) {
             throw new PhpSpreadsheetException("File $path not found!");
+        }
+
+        if ($this->worksheet !== null) {
+            if ($this->path !== '') {
+                $this->worksheet->getCell($this->coordinates);
+            }
         }
 
         return $this;
@@ -177,6 +209,8 @@ class Drawing extends BaseDrawing
      * Set isURL.
      *
      * @return $this
+     *
+     * @deprecated 3.7.0 not needed, property is set by setPath
      */
     public function setIsURL(bool $isUrl): self
     {

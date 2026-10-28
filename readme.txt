@@ -150,6 +150,13 @@ Yes, we added "wpeieWoo" user capability for admin, you are free to set this cap
 = Can I import / export WooCommerce Orders and Subscriptions with this plugin?  =
 This feature is available in the [PRO Version of Orders Import Export for WooCommerce with Excel](https://extend-wp.com/product/orders-import-export-for-woocommerce-with-excel/ "Orders Import Export for WooCommerce with Excel")
 
+= Does this plugin connect to any external services? =
+Yes, the plugin contacts the vendor's website (extend-wp.com) in three cases, always initiated by an administrator from the plugin's admin screens:
+* When the "More extensions" popup is opened, the plugin downloads the list of available premium plugins from https://extend-wp.com/wp-json/products/v2/product/category/woocommerce. No personal data is transmitted.
+* The optional discount signup notice sends the email address an administrator types into the form to https://extend-wp.com/wp-json/signups/v2/post so that discount notifications can be delivered. Nothing is sent unless the administrator enters an email and presses "Sign up".
+* If an administrator submits deactivation feedback, the selected reason, their comments and the plugin slug and version are sent to https://extend-wp.com/wp-json/feedback/v2/post. No data is sent when deactivating with "Skip & Deactivate".
+No other data is ever transmitted to extend-wp.com, and no third-party tracking is used.
+
 == Screenshots ==
 
 1. WordPress Product Excel Import & Export configuration screen
@@ -160,6 +167,10 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 == Changelog ==
 
 = 7.0.6 - 28/10/2026 =
+* Fix - Import loop now processes every data row of the Excel file (fixed off-by-one that skipped all rows after the first and never showed "Job Done").
+* Dev - Bundled PhpSpreadsheet updated from 3.4.0 to 3.10.8 via Composer (dependency tree regenerated; unused markbaker function files dropped).
+* Dev - Signup and deactivation feedback forms now submit through the site's own AJAX endpoint instead of the browser contacting extend-wp.com directly; external services documented in the FAQ.
+* Dev - Outdated SheetJS xlsx.js (v0.8.8) replaced with SheetJS CE 0.20.3.
 * Dev - Cleaned up plugin files to fix Plugin Check errors (hidden files, dev-only files, Word lock file and badly named files removed).
 * Dev - Moved the PhpSpreadsheet "PHP Charting Libraries" reference to documentation/php-charting-libraries.txt.
 * Dev - Sanitized and validated form inputs and added nonce verification across the import/export flows.
@@ -168,7 +179,6 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 * Fix - Categories import now checks the uploaded file exists before processing.
 * Fix - "More extensions" popup now shows a fallback message when the extend-wp.com API is unavailable.
 * Dev - Enqueued scripts and styles now use the plugin version; removed redundant enqueue calls and the discouraged load_plugin_textdomain() call; minimum WordPress version raised to 5.9.
-* Dev - Release zip now excludes vendored dev/dot files via .gitattributes; readme stable tag matches the dev version header.
 * Dev - Deactivation survey library now blocks direct file access.
 * Tested up to: 7.1.
 * WC tested up to: 10.7.
