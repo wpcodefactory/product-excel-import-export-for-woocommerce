@@ -8,13 +8,14 @@
  * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
  * Domain Path: /langs
+ * Requires at least: 4.6
  * WC requires at least: 2.2
  * WC tested up to: 10.7
  * Requires Plugins: woocommerce
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Created On: 10-05-2016
- * Updated On: 26-10-2026
+ * Updated On: 28-10-2026
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -46,28 +47,33 @@ $role = get_role( 'administrator' );
 $role->add_cap( 'wpeieWoo' );
 
 function woopei_js() {
-	/** this function css and js files */
+	/**
+	 * This function css and js files.
+	 *
+	 * @version 7.0.6
+	 */
 
-	wp_enqueue_style( 'woo-importer_css', plugins_url( '/css/woo-importer.css?v=34', __FILE__ ) );
+	wp_enqueue_style( 'woo-importer_css', plugins_url( '/css/woo-importer.css', __FILE__ ), array(), WPFACTORY_WC_PEIE_VERSION );
 	wp_enqueue_style( 'woo-importer_css' );
 
-	wp_enqueue_script( 'woo-importer-xlsx', plugins_url( '/js/xlsx.js', __FILE__ ), array( 'jquery' ), null, true );
+	wp_enqueue_script( 'woo-importer-xlsx', plugins_url( '/js/xlsx.js', __FILE__ ), array( 'jquery' ), WPFACTORY_WC_PEIE_VERSION, true );
 	wp_enqueue_script( 'woo-importer-xlsx' );
-	wp_enqueue_script( 'woo-importer-filesaver', plugins_url( '/js/filesaver.js', __FILE__ ), array( 'jquery' ), null, true );
+	wp_enqueue_script( 'woo-importer-filesaver', plugins_url( '/js/filesaver.js', __FILE__ ), array( 'jquery' ), WPFACTORY_WC_PEIE_VERSION, true );
 	wp_enqueue_script( 'woo-importer-filesaver' );
 
-	wp_enqueue_script( 'woopei_js', plugins_url( '/js/woo-importer.js?v=34', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-droppable' ), null, true );
+	wp_enqueue_script( 'woopei_js', plugins_url( '/js/woo-importer.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-droppable' ), WPFACTORY_WC_PEIE_VERSION, true );
 	wp_enqueue_script( 'woopei_js' );
 
 	$hide_rating = esc_js( get_option( 'woopei_hide_rating' ) );
 	$woopei      = array(
-		'RestRoot'    => esc_url_raw( rest_url() ),
-		'hide_rating' => $hide_rating,
-		'plugin_url'  => plugins_url( '', __FILE__ ),
-		'siteUrl'     => site_url(),
-		'ajax_url'    => admin_url( 'admin-ajax.php' ),
-		'nonce'       => wp_create_nonce( 'wp_rest' ),
-		'exportfile'  => plugins_url( '/js/tableexport.js', __FILE__ ),
+		'RestRoot'         => esc_url_raw( rest_url() ),
+		'hide_rating'      => $hide_rating,
+		'plugin_url'       => plugins_url( '', __FILE__ ),
+		'siteUrl'          => site_url(),
+		'ajax_url'         => admin_url( 'admin-ajax.php' ),
+		'nonce'            => wp_create_nonce( 'wp_rest' ),
+		'extensions_nonce' => wp_create_nonce( 'woopei_extensions' ),
+		'exportfile'       => plugins_url( '/js/tableexport.js', __FILE__ ),
 	);
 	wp_localize_script( 'woopei_js', 'woopei', $woopei );
 }
@@ -149,7 +155,11 @@ function woopei_main() {
 
 // MAIN FORM FOR EXCEL UPLOAD
 function woopei_init() {
-	/** this function initializes the main interface */
+	/**
+	 * This function initializes the main interface.
+	 *
+	 * @version 7.0.6
+	 */
 	?>
 	<div class="importer-wrap">
 
@@ -162,9 +172,9 @@ function woopei_init() {
 				'importCategories' => __( 'Import Categories', 'woo-product-excel-importer' ),
 			);
 
-			if ( isset( $_GET['tab'] ) ) {
-				$current = wp_unslash( $_GET['tab'] );
-			} else {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Tab navigation is a read-only UI action and carries no risk.
+			$current = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'main';
+			if ( ! array_key_exists( $current, $tabs ) ) {
 				$current = 'main';
 			}
 			echo '<h2 class="nav-tab-wrapper" >';
@@ -186,10 +196,10 @@ function woopei_init() {
 			?>
 
 	<?php
-	if ( isset( $_GET['tab'] ) && $_GET['tab'] === 'exportProducts' ) {
+	if ( 'exportProducts' === $current ) {
 		$export = new WooexportProducts();
 		$export->exportProductsDisplay();
-	} elseif ( isset( $_GET['tab'] ) && $_GET['tab'] === 'importCategories' ) {
+	} elseif ( 'importCategories' === $current ) {
 		$import_cat = new WooImportCategories();
 		$import_cat->importCategoriesDisplay();
 	} else {
@@ -266,22 +276,37 @@ add_action( 'wp_ajax_nopriv_woopei_extensions', 'woopei_extensions' );
 add_action( 'wp_ajax_woopei_extensions', 'woopei_extensions' );
 
 function woopei_extensions() {
-	/** this function provides a popup for extra plugins */
-	if ( is_admin() && current_user_can( 'wpeieWoo' ) && isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'woopei_extensions' ) {
+	/**
+	 * This function provides a popup for extra plugins.
+	 *
+	 * @version 7.0.6
+	 */
+	check_ajax_referer( 'woopei_extensions', 'nonce' );
+
+	if ( is_admin() && current_user_can( 'wpeieWoo' ) && isset( $_REQUEST['action'] ) && 'woopei_extensions' === sanitize_key( wp_unslash( $_REQUEST['action'] ) ) ) {
 
 		$response = wp_remote_get( 'https://extend-wp.com/wp-json/products/v2/product/category/woocommerce' );
 
-		if ( is_wp_error( $response ) ) {
-			return;
-		}
-
-		$posts = json_decode( wp_remote_retrieve_body( $response ) );
+		$posts = is_wp_error( $response ) ? array() : json_decode( wp_remote_retrieve_body( $response ) );
 
 		if ( empty( $posts ) ) {
-			return;
-		}
-
-		if ( ! empty( $posts ) ) {
+			// Fallback: the remote API is unavailable, so show a static popup instead of nothing.
+			?>
+			<div id='woopei_extensions_popup'>
+				<div class='woopei_extensions_content'>
+					<span class="woopeiclose">&times;</span>
+					<h2><i><?php esc_html_e( 'Extend your WordPress functionality with Extend-WP.com well crafted Premium Plugins!', 'woo-product-excel-importer' ); ?></i></h2>
+					<hr/>
+					<p>
+						<a class='button_extensions button-primary' target='_blank' href='https://extend-wp.com'>
+							<?php esc_html_e( 'Visit extend-wp.com', 'woo-product-excel-importer' ); ?>
+							<i class='fa fa-angle-double-right'></i>
+						</a>
+					</p>
+				</div>
+			</div>
+			<?php
+		} else {
 
 			$allowed_html = array(
 				'a'          => array(

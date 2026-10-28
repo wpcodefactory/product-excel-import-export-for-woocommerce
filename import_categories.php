@@ -3,6 +3,7 @@
  * Product Excel Import & Export for WooCommerce - WooImportCategories Class
  *
  * @author  WPFactory
+ * @version 7.0.6
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -114,13 +115,37 @@ class WooImportCategories {
 
 
 
+	/**
+	 * importCategories.
+	 *
+	 * @version 7.0.6
+	 */
 	public function importCategories() {
 
 		if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' && current_user_can( 'wpeieWoo' ) && isset( $_REQUEST['importCategories'] ) ) {
 
 			check_admin_referer( 'importCategories' );
 			check_ajax_referer( 'importCategories' );
-			$filename = $_FILES['file']['tmp_name'];
+
+			if ( ! function_exists( 'wp_handle_upload' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/file.php';
+			}
+
+			$uploaded = wp_handle_upload(
+				$_FILES['file'],
+				array(
+					'test_form' => false,
+					'mimes'     => array(
+						'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+					),
+				)
+			);
+
+			if ( isset( $uploaded['error'] ) || ! isset( $uploaded['file'] ) ) {
+				return;
+			}
+
+			$filename = $uploaded['file'];
 
 			if ( isset( $_FILES['file']['size'] ) && $_FILES['file']['size'] > 0 ) {
 				if ( isset( $_FILES['file']['type'] ) && $_FILES['file']['type'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ) {
@@ -132,7 +157,7 @@ class WooImportCategories {
 
 					for ( $i = 2;$i <= $data;$i++ ) {
 						$taxonomy   = 'product_cat';
-						$termParent = sanitize_text_field( $allDataInSheet[ $i ]['D'] );
+						$termParent = sanitize_text_field( (string) $allDataInSheet[ $i ]['D'] );
 
 						$term        = sanitize_text_field( $allDataInSheet[ $i ]['A'] );
 						$description = sanitize_text_field( $allDataInSheet[ $i ]['B'] );
@@ -144,7 +169,7 @@ class WooImportCategories {
 						}
 
 						// check if post exists.
-						if ( $allDataInSheet[ $i ]['D'] === '' ) {
+						if ( '' === $termParent ) {
 							if ( term_exists( $slug, $taxonomy ) ) {
 								print "<p class='warning'>" . esc_html( $term ) . ' ' . esc_html__( 'exists', 'woo-product-excel-importer' ) . '.</p>';
 
@@ -154,16 +179,19 @@ class WooImportCategories {
 											$taxonomy,
 											array(
 												'description' => $description,
-												'slug' => $slug,
+												'slug'        => $slug,
 											)
 										);
 
-								print "<p class='success'>" . esc_html( $term ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
+								if ( is_wp_error( $id ) ) {
+									print "<p class='error'>" . esc_html( $term ) . ' - ' . esc_html( $id->get_error_message() ) . '.</p>';
+								} else {
+									print "<p class='success'>" . esc_html( $term ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
+								}
 							}
 						} elseif ( term_exists( $termParent, $taxonomy ) ) {
 
-								$id  = term_exists( $termParent, $taxonomy );
-								$pid = $id['term_id'];
+								$pid = term_exists( $termParent, $taxonomy );
 
 								// import subterm.
 							if ( term_exists( $slug, $taxonomy ) ) {
@@ -190,11 +218,19 @@ class WooImportCategories {
 									)
 								);
 
-								print "<p class='success'>" . esc_html( $term ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
+								if ( is_wp_error( $id ) ) {
+									print "<p class='error'>" . esc_html( $term ) . ' - ' . esc_html( $id->get_error_message() ) . '.</p>';
+								} else {
+									print "<p class='success'>" . esc_html( $term ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
+								}
 							}
 						} else {
 
-								$id  = wp_insert_term( $termParent, $taxonomy );
+								$id = wp_insert_term( $termParent, $taxonomy );
+								if ( is_wp_error( $id ) ) {
+									print "<p class='error'>" . esc_html( $termParent ) . ' - ' . esc_html( $id->get_error_message() ) . '.</p>';
+									continue;
+								}
 								$pid = $id['term_id'];
 								print "<p class='success'>" . esc_html( $termParent ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
 
@@ -222,16 +258,22 @@ class WooImportCategories {
 										)
 									);
 
-								print "<p class='success'>" . esc_html( $term ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
+								if ( is_wp_error( $id ) ) {
+									print "<p class='error'>" . esc_html( $term ) . ' - ' . esc_html( $id->get_error_message() ) . '.</p>';
+								} else {
+									print "<p class='success'>" . esc_html( $term ) . ' ' . esc_html__( 'imported successfully', 'woo-product-excel-importer' ) . '.</p>';
 
-								if ( false === ( get_transient( 'woopei_notified' ) ) ) {
-									set_transient( 'woopei_notification', true );
+									if ( false === ( get_transient( 'woopei_notified' ) ) ) {
+										set_transient( 'woopei_notification', true );
+									}
 								}
 							}
 						}
 					}
 				}
 			}
+
+			wp_delete_file( $filename );
 		}
 	}
 }

@@ -2,6 +2,7 @@
  * Product Excel Import & Export for WooCommerce - JS
  *
  * @author  WPFactory
+ * @version 7.0.6
  */
 
 (function( $ ) {
@@ -393,7 +394,8 @@
 					type: 'POST',
 					url: woopei.ajax_url,
 					data: {
-						"action": action
+						"action": action,
+						"nonce": woopei.extensions_nonce
 					},
 					 beforeSend: function(data) {
 						$("html, body").animate({ scrollTop: 0 }, "slow");

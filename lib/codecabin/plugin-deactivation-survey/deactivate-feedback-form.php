@@ -2,6 +2,8 @@
 
 namespace codecabin;
 
+defined( 'ABSPATH' ) || exit;
+
 if(!is_admin())
 	return;
 
@@ -15,14 +17,21 @@ if(defined('CODECABIN_DEACTIVATE_FEEDBACK_FORM_INCLUDED'))
 define('CODECABIN_DEACTIVATE_FEEDBACK_FORM_INCLUDED', true);
 
 add_action('admin_enqueue_scripts', function() {
-	
+
+	/**
+	 * Enqueue scripts and styles.
+	 *
+	 * @version 7.0.6
+	 */
+	$version = defined( 'WPFACTORY_WC_PEIE_VERSION' ) ? WPFACTORY_WC_PEIE_VERSION : '7.0.6';
+
 	// Enqueue scripts
-	wp_enqueue_script('remodal', plugin_dir_url(__FILE__) . 'remodal.min.js');
-	wp_enqueue_style('remodal', plugin_dir_url(__FILE__) . 'remodal.css');
-	wp_enqueue_style('remodal-default-theme', plugin_dir_url(__FILE__) . 'remodal-default-theme.css');
-	
-	wp_enqueue_script('codecabin-deactivate-feedback-form', plugin_dir_url(__FILE__) . 'deactivate-feedback-form.js?v=xssgs');
-	wp_enqueue_style('codecabin-deactivate-feedback-form', plugin_dir_url(__FILE__) . 'deactivate-feedback-form.css');
+	wp_enqueue_script('remodal', plugin_dir_url(__FILE__) . 'remodal.min.js', array(), $version, true);
+	wp_enqueue_style('remodal', plugin_dir_url(__FILE__) . 'remodal.css', array(), $version);
+	wp_enqueue_style('remodal-default-theme', plugin_dir_url(__FILE__) . 'remodal-default-theme.css', array(), $version);
+
+	wp_enqueue_script('codecabin-deactivate-feedback-form', plugin_dir_url(__FILE__) . 'deactivate-feedback-form.js', array('jquery'), $version, true);
+	wp_enqueue_style('codecabin-deactivate-feedback-form', plugin_dir_url(__FILE__) . 'deactivate-feedback-form.css', array(), $version);
 	
 	// Localized strings
 	wp_localize_script('codecabin-deactivate-feedback-form', 'codecabin_deactivate_feedback_form_strings', array(

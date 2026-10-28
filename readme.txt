@@ -1,10 +1,10 @@
 === Product Excel Import & Export for WooCommerce ===
 Contributors: wpcodefactory, anbinder, karzin, omardabbas
 Tags:  product import, excel import, product export, import products, bulk import
-Requires at least: 3.0.1
-Tested up to: 7.0
+Requires at least: 4.6
+Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 7.0.5
+Stable tag: 7.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,9 +159,17 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 
 == Changelog ==
 
-= 7.0.6 - 26/10/2026 =
+= 7.0.6 - 28/10/2026 =
 * Dev - Cleaned up plugin files to fix Plugin Check errors (hidden files, dev-only files, Word lock file and badly named files removed).
 * Dev - Moved the PhpSpreadsheet "PHP Charting Libraries" reference to documentation/php-charting-libraries.txt.
+* Dev - Sanitized and validated form inputs and added nonce verification across the import/export flows.
+* Fix - File uploads now use wp_handle_upload() and the uploaded file is deleted after import.
+* Fix - Categories import now handles empty parent cells and WP_Error responses without fatal errors; term hierarchy fixed for modern WordPress.
+* Fix - "More extensions" popup now shows a fallback message when the extend-wp.com API is unavailable.
+* Dev - Enqueued scripts and styles now use the plugin version; removed the discouraged load_plugin_textdomain() call; minimum WordPress version raised to 4.6.
+* Dev - Deactivation survey library now blocks direct file access.
+* Tested up to: 7.1.
+* WC tested up to: 10.7.
 
 = 7.0.5 - 24/05/2026 =
 * Tested up to: 7.0.

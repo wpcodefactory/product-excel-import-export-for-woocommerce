@@ -2,7 +2,7 @@
 /**
  * Product Excel Import & Export for WooCommerce - Import
  *
- * @version 7.0.4
+ * @version 7.0.6
  *
  * @author  WPFactory
  */
@@ -21,7 +21,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 /**
  * woopei_importProducts.
  *
- * @version 7.0.4
+ * @version 7.0.6
  */
 function woopei_importProducts() {
 
@@ -35,8 +35,8 @@ function woopei_importProducts() {
 		check_admin_referer( 'excel_upload' );
 		check_ajax_referer( 'excel_upload' );
 
-		if ( isset( $_FILES['file']['tmp_name'] ) ) {
-			$filename = $_FILES['file']['tmp_name'] ;
+		if ( ! function_exists( 'wp_handle_upload' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
 
 		if (
@@ -48,6 +48,23 @@ function woopei_importProducts() {
 				isset( $_FILES['file']['type'] ) &&
 				'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' === $_FILES['file']['type']
 			) {
+
+				$uploaded = wp_handle_upload(
+					$_FILES['file'],
+					array(
+						'test_form' => false,
+						'mimes'     => array(
+							'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+						),
+					)
+				);
+
+				if ( isset( $uploaded['error'] ) || ! isset( $uploaded['file'] ) ) {
+					print '<h3>' . esc_html__( 'Invalid File:Please Upload Excel File', 'woo-product-excel-importer' ) . '</h3>';
+					return;
+				}
+
+				$filename = $uploaded['file'];
 
 				$objPHPExcel = IOFactory::load( $filename );
 
@@ -125,12 +142,11 @@ function woopei_importProducts() {
 					<input type='hidden' name='finalupload' value='<?php print esc_attr( $totals ); ?>' />
 					<input type='hidden' name='start' value='1' />
 					<input type='hidden' name='action' value='woopei_process' />
+					<input type='hidden' name='importFile' value='<?php print esc_attr( $filename ); ?>' />
 				<?php wp_nonce_field( 'excel_process', 'secNonce' );
 				submit_button( esc_html__( 'Upload', 'woo-product-excel-importer' ), 'primary', 'check' );
 				print '</div>';
 				print '</form></div>';
-
-				move_uploaded_file( $_FILES['file']['tmp_name'], plugin_dir_path( __FILE__ ) . 'import.xlsx' );
 
 			} else {
 				print '<h3>' . esc_html__( 'Invalid File:Please Upload Excel File', 'woo-product-excel-importer' ) . '</h3>';
@@ -142,7 +158,7 @@ function woopei_importProducts() {
 /**
  * woopei_process.
  *
- * @version 7.0.4
+ * @version 7.0.6
  */
 function woopei_process() {
 
@@ -151,46 +167,48 @@ function woopei_process() {
 		check_admin_referer( 'excel_process', 'secNonce' );
 		check_ajax_referer( 'excel_process', 'secNonce' );
 
-		$filename = plugin_dir_path( __FILE__ ) . 'import.xlsx';
+		$post_data = array_map( 'sanitize_text_field', wp_unslash( $_POST ) );
+
+		$filename = isset( $post_data['importFile'] ) ? $post_data['importFile'] : '';
 
 		$objPHPExcel    = IOFactory::load( $filename );
 		$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray( null, true, true, true );
 		$data           = count( $allDataInSheet );  // Here get total count of row in that Excel sheet
 
 		// parameters for running with ajax - no php timeouts
-		$i     = absint( $_POST['start'] ?? 1 ) + 1;
+		$i     = absint( $post_data['start'] ?? 1 ) + 1;
 		$start = $i - 1;
 
 		$images         = array();
 		$gallery_images = array();
 
 		// SANITIZE AND VALIDATE title and description
-		$title = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['post_title'] ] );
-		if ( ! empty( $allDataInSheet[ $i ][ $_POST['post_content'] ] ) ) {
-			$content = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['post_content'] ] );
+		$title = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_title'] ] );
+		if ( ! empty( $allDataInSheet[ $i ][ $post_data['post_content'] ] ) ) {
+			$content = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_content'] ] );
 		} else {
 			$content = '';
 		}
 
-		if ( ! empty( $allDataInSheet[ $i ][ $_POST['post_excerpt'] ] ) ) {
-			$excerpt = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['post_excerpt'] ] );
+		if ( ! empty( $allDataInSheet[ $i ][ $post_data['post_excerpt'] ] ) ) {
+			$excerpt = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_excerpt'] ] );
 		} else {
 			$excerpt = '';
 		}
 
-		if ( ! empty( $allDataInSheet[ $i ][ $_POST['post_excerpt'] ] ) ) {
-			$author = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['post_author'] ] );
+		if ( ! empty( $allDataInSheet[ $i ][ $post_data['post_excerpt'] ] ) ) {
+			$author = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_author'] ] );
 		} else {
 			$author = '';
 		}
-		if ( ! empty( $allDataInSheet[ $i ][ $_POST['post_name'] ] ) ) {
-			$url = sanitize_title_with_dashes( $allDataInSheet[ $i ][ $_POST['post_name'] ] );
+		if ( ! empty( $allDataInSheet[ $i ][ $post_data['post_name'] ] ) ) {
+			$url = sanitize_title_with_dashes( $allDataInSheet[ $i ][ $post_data['post_name'] ] );
 		} else {
 			$url = '';
 		}
 
-		if ( ! empty( $allDataInSheet[ $i ][ $_POST['post_status'] ] ) ) {
-			$post_status = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['post_status'] ] );
+		if ( ! empty( $allDataInSheet[ $i ][ $post_data['post_status'] ] ) ) {
+			$post_status = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_status'] ] );
 		} else {
 			$post_status = '';
 		}
@@ -240,8 +258,8 @@ function woopei_process() {
 		// IMPORT - UPDATE POST META
 
 					// SANITIZE AND VALIDATE meta data
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_sale_price'] ] ) ) {
-			$sale_price = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['_sale_price'] ] );
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_sale_price'] ] ) ) {
+			$sale_price = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['_sale_price'] ] );
 			if ( is_numeric( $sale_price ) && $sale_price >= 0 ) {
 				update_post_meta( $id, '_sale_price', $sale_price );
 				if ( $sale_price === 0 ) {
@@ -254,8 +272,8 @@ function woopei_process() {
 			}
 		}
 
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_regular_price'] ] ) ) {
-			$regular_price = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['_regular_price'] ] );
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_regular_price'] ] ) ) {
+			$regular_price = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['_regular_price'] ] );
 
 			if ( is_numeric( $regular_price ) && $regular_price > 0 ) {
 				// if ( $sale_price  && !empty($allDataInSheet[$i][$_POST['_sale_price']]) ) {
@@ -268,19 +286,19 @@ function woopei_process() {
 		}
 
 					// ADDITION : IF SALE PRICE IS EMPTY PRICE WILL BE EQUAL TO REGULAR PRICE
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_sale_price'] ] ) ) {
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_sale_price'] ] ) ) {
 			if ( is_numeric( $sale_price ) && $sale_price != 0 ) {
 				update_post_meta( $id, '_price', $sale_price );
-			} elseif ( isset( $allDataInSheet[ $i ][ $_POST['_regular_price'] ] ) ) {
+			} elseif ( isset( $allDataInSheet[ $i ][ $post_data['_regular_price'] ] ) ) {
 				update_post_meta( $id, '_price', $regular_price );
 			}
-		} elseif ( isset( $allDataInSheet[ $i ][ $_POST['_regular_price'] ] ) ) {
+		} elseif ( isset( $allDataInSheet[ $i ][ $post_data['_regular_price'] ] ) ) {
 			update_post_meta( $id, '_price', $regular_price );
 		}
 
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_sku'] ] ) ) {
-			$sku = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['_sku'] ] );
-			if ( ! $sku && ! empty( $_POST['_sku'] ) ) {
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_sku'] ] ) ) {
+			$sku = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['_sku'] ] );
+			if ( ! $sku && ! empty( $post_data['_sku'] ) ) {
 				$sku = '';
 				print esc_html__( 'For sku of', 'woo-product-excel-importer' ) . esc_html( $title ) . esc_html__( 'you need numbers entered', 'woo-product-excel-importer' ) . '<br/>';
 			} else {
@@ -288,9 +306,9 @@ function woopei_process() {
 			}
 		}
 
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_weight'] ] ) ) {
-			$weight = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['_weight'] ] );
-			if ( ! $weight && ! empty( $_POST['_weight'] ) ) {
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_weight'] ] ) ) {
+			$weight = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['_weight'] ] );
+			if ( ! $weight && ! empty( $post_data['_weight'] ) ) {
 				$weight = '';
 				print esc_html__( 'For weight of', 'woo-product-excel-importer' ) . esc_html( $title ) . esc_html__( 'you need numbers entered', 'woo-product-excel-importer' ) . '<br/>';
 			} else {
@@ -298,9 +316,9 @@ function woopei_process() {
 			}
 		}
 
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_stock'] ] ) ) {
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_stock'] ] ) ) {
 
-			$stock = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['_stock'] ] );
+			$stock = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['_stock'] ] );
 			if ( is_numeric( $stock ) && $stock >= 0 ) {
 				update_post_meta( $id, '_stock', $stock );
 			} else {
@@ -322,9 +340,9 @@ function woopei_process() {
 			}
 		}
 
-		if ( isset( $allDataInSheet[ $i ][ $_POST['_virtual'] ] ) ) {
-			$virtual = sanitize_text_field( $allDataInSheet[ $i ][ $_POST['_virtual'] ] );
-			if ( ! $virtual && ! empty( $_POST['_virtual'] ) ) {
+		if ( isset( $allDataInSheet[ $i ][ $post_data['_virtual'] ] ) ) {
+			$virtual = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['_virtual'] ] );
+			if ( ! $virtual && ! empty( $post_data['_virtual'] ) ) {
 				$virtual = '';
 			} else {
 				update_post_meta( $id, '_virtual', $virtual );
@@ -339,13 +357,13 @@ function woopei_process() {
 					$taxonomy_objects = get_object_taxonomies( 'product', 'objects' );
 		foreach ( $taxonomy_objects as $voc ) {
 			if ( $voc->name === 'product_tag' || $voc->name === 'product_cat' ) {
-				if ( isset( $allDataInSheet[ $i ][ $_POST[ $voc->name ] ] ) ) {
-					$taxToImport = explode( ',', sanitize_text_field( $allDataInSheet[ $i ][ $_POST[ $voc->name ] ] ) );
+				if ( isset( $allDataInSheet[ $i ][ $post_data[ $voc->name ] ] ) ) {
+					$taxToImport = explode( ',', sanitize_text_field( $allDataInSheet[ $i ][ $post_data[ $voc->name ] ] ) );
 					foreach ( $taxToImport as $taxonomy ) {
 						wp_set_object_terms( $id, $taxonomy, $voc->name, true ); // true is critical to append the values
 
 						// GET ALL ASSIGNED TERMS AND ADD PARENT FOR PRODUCT_CAT TAXONOMY!!!
-						if ( isset( $_POST['selectparent'] ) ) {
+						if ( isset( $post_data['selectparent'] ) ) {
 								$terms = wp_get_post_terms( $id, $voc->name );
 							foreach ( $terms as $term ) {
 								while ( $term->parent !== 0 && ! has_term( $term->parent, sanitize_text_field( $voc->name ), $post ) ) {
@@ -382,7 +400,7 @@ function woopei_process() {
 		}
 
 		$i -= 1;
-		$finalUpload = absint( $_POST['finalupload'] );
+		$finalUpload = absint( $post_data['finalupload'] );
 		if ( $i === $finalUpload ) {
 
 			print "<div class='importMessageSussess'><h2>" . esc_html( $i ) . ' / ' . esc_html( $finalUpload ) . ' ' . esc_html__( '- JOB DONE!', 'woo-product-excel-importer' ) . " <a href='" . esc_url( admin_url( 'edit.php?post_type=product' ) ) . "' target='_blank'><i class='fa fa-eye'></i> " . esc_html__( 'GO VIEW YOUR PRODUCTS!', 'woo-product-excel-importer' ) . '</a></h2></div>';

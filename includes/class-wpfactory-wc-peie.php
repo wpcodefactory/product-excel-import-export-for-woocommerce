@@ -2,7 +2,7 @@
 /**
  * Product Excel Import & Export for WooCommerce - Main Class
  *
- * @version 7.0.0
+ * @version 7.0.6
  * @since   7.0.0
  *
  * @author  WPFactory
@@ -49,7 +49,7 @@ final class WPFactory_WC_PEIE {
 	/**
 	 * WPFactory_WC_PEIE Constructor.
 	 *
-	 * @version 7.0.0
+	 * @version 7.0.6
 	 * @since   7.0.0
 	 *
 	 * @access  public
@@ -61,9 +61,6 @@ final class WPFactory_WC_PEIE {
 			return;
 		}
 
-		// Set up localisation
-		add_action( 'init', array( $this, 'localize' ) );
-
 		// Declare compatibility with custom order tables for WooCommerce
 		add_action( 'before_woocommerce_init', array( $this, 'wc_declare_compatibility' ) );
 
@@ -72,20 +69,6 @@ final class WPFactory_WC_PEIE {
 			$this->admin();
 		}
 
-	}
-
-	/**
-	 * localize.
-	 *
-	 * @version 7.0.0
-	 * @since   7.0.0
-	 */
-	function localize() {
-		load_plugin_textdomain(
-			'woo-product-excel-importer',
-			false,
-			dirname( plugin_basename( WPFACTORY_WC_PEIE_FILE ) ) . '/langs/'
-		);
 	}
 
 	/**
