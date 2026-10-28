@@ -165,8 +165,10 @@ This feature is available in the [PRO Version of Orders Import Export for WooCom
 * Dev - Sanitized and validated form inputs and added nonce verification across the import/export flows.
 * Fix - File uploads now use wp_handle_upload() and the uploaded file is deleted after import.
 * Fix - Categories import now handles empty parent cells and WP_Error responses without fatal errors; term hierarchy fixed for modern WordPress.
+* Fix - Categories import now checks the uploaded file exists before processing.
 * Fix - "More extensions" popup now shows a fallback message when the extend-wp.com API is unavailable.
-* Dev - Enqueued scripts and styles now use the plugin version; removed the discouraged load_plugin_textdomain() call; minimum WordPress version raised to 4.6.
+* Dev - Enqueued scripts and styles now use the plugin version; removed redundant enqueue calls and the discouraged load_plugin_textdomain() call; minimum WordPress version raised to 5.9.
+* Dev - Release zip now excludes vendored dev/dot files via .gitattributes; readme stable tag matches the dev version header.
 * Dev - Deactivation survey library now blocks direct file access.
 * Tested up to: 7.1.
 * WC tested up to: 10.7.

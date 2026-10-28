@@ -131,6 +131,10 @@ class WooImportCategories {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
 			}
 
+			if ( ! isset( $_FILES['file'] ) ) {
+				return;
+			}
+
 			$uploaded = wp_handle_upload(
 				$_FILES['file'],
 				array(
