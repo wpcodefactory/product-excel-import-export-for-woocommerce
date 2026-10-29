@@ -179,11 +179,18 @@ function woopei_process() {
 		$i     = absint( $post_data['start'] ?? 1 ) + 1;
 		$start = $i - 1;
 
-		$images         = array();
-		$gallery_images = array();
+		// Guard: TITLE mapping is mandatory - products are created or updated by title only.
+		if ( empty( $post_data['post_title'] ) ) {
+			print '<p class="warning">' . esc_html__( 'TITLE mapping is mandatory: map the TITLE field to an Excel column and re-upload.', 'woo-product-excel-importer' ) . '</p>';
+			die;
+		}
 
 		// SANITIZE AND VALIDATE title and description
-		$title = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_title'] ] );
+		$title = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_title'] ] ?? '' );
+		if ( '' === $title ) {
+			print '<p class="warning">' . esc_html__( 'Row skipped: TITLE cell is empty.', 'woo-product-excel-importer' ) . '</p>';
+			die;
+		}
 		if ( ! empty( $allDataInSheet[ $i ][ $post_data['post_content'] ] ) ) {
 			$content = sanitize_text_field( $allDataInSheet[ $i ][ $post_data['post_content'] ] );
 		} else {

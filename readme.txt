@@ -13,7 +13,7 @@ WordPress Plugin to Import Products and Export Products for Woocommerce in Bulk 
 == Description ==
 
 With this WordPress plugin you can do Product Import & Export for Woocommerce in Bulk with Excel instantly.
-Unlimited import/updates of Simple products along with their images is possible as the process works in batched to avoid PHP memory limits.
+Unlimited import/updates of Simple products is possible as the process works in batched to avoid PHP memory limits.
 Export your WooCommerce products in excel file to later do Inventory Stock Updates or change your Prices in bulk.
 
 == MAIN FEATURES ==
@@ -59,7 +59,7 @@ Lastly, added "wpeieWoo" user capability for admin, you are free to set this cap
 * Update by Product ID, SKU or Title. You can easily export get the necessary fields and update back.
 * PRODUCT IMPORT - SIMPLE PRODUCTS WITH ATTRIBUTES: add multiple attributes,comma separated, this means you need only one Excel row for each product!
 * Update Feature Supports Update by PRODUCT ID - given in the Export Feature! This was you can easily update simple products or variable, along with product variations on the fly!
-* FIELDS SUPPORTED: User preConfigured Attributes, User preConfigured Custom Taxonomies, length, width, height, downloadable, download url, download expiry, download limit, virtual, purchase note, cross-sell ids, upsell ids, purchase note, backorders, sold individually, featured, tax class, tax status, stock status, shipping class
+* FIELDS SUPPORTED: User preConfigured Attributes, User preConfigured Custom Taxonomies, downloadable, download url, download expiry, download limit, purchase note, cross-sell ids, upsell ids, backorders, sold individually, featured, tax class, tax status, shipping class
 * CUSTOM FIELDS SUPPORT: ACF / ACF PRO and other plugin's post meta fields  - YOU CAN ALSO manually set the name of custom field you need to be available for import & export
 * Import / Export YOAST SEO Meta Product fields,  like META TITLE, META DESCRIPTION
 * Compatible with [YITH WooCommerce Color and Label Variations](https://yithemes.com/themes/plugins/yith-woocommerce-color-and-label-variations/ "YITH WooCommerce Color and Label Variations")
@@ -180,6 +180,9 @@ No other data is ever transmitted to extend-wp.com, and no third-party tracking 
 * Fix - "More extensions" popup now shows a fallback message when the extend-wp.com API is unavailable.
 * Dev - Enqueued scripts and styles now use the plugin version; removed redundant enqueue calls and the discouraged load_plugin_textdomain() call; minimum WordPress version raised to 5.9.
 * Dev - Deactivation survey library now blocks direct file access.
+* Fix - Import now requires a mapped TITLE column and skips rows with an empty TITLE cell instead of creating empty-title products.
+* Dev - Import JS validation now requires the TITLE field only (SKU/Product-ID update references removed; update is by title only).
+* Dev - Readme: removed the "along with their images" claim from the description and removed Free-supported fields from the Pro "FIELDS SUPPORTED" list.
 * Tested up to: 7.1.
 * WC tested up to: 11.2.
 

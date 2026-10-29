@@ -40,7 +40,6 @@
 
 	$('.importer-wrap .nav-tab-wrapper a').click(function(e){
 		if($(this).hasClass("premium") ){
-			$(".premium_msg").slideDown('slow');
 			$('.importer-wrap').removeClass('loading');
 		}
 	});
@@ -112,7 +111,7 @@
 
 						$(".importer-wrap #product_process").on('submit',function(e) {
 							e.preventDefault();
-							if($("input[name='post_title']").val() !='' || $("input[name='ID']").val() !='' || $("input[name='_sku']").val() !='' ){
+							if($("input[name='post_title']").val() !='' ){
 								$(".progressText").fadeIn();
 								var total = $(".importer-wrap input[name='finalupload']").val() ;
 								$(".importer-wrap .total").html(total-1);
@@ -156,7 +155,7 @@
 								}
 
 								wpeiImportProducts();
-							}else alert( 'Title Selection, SKU or Product ID (for update from export file) is Mandatory.' );
+							}else alert( 'TITLE Selection is Mandatory.' );
 
 						});
 					}
@@ -248,7 +247,6 @@
 					success: function(response){
 
 						$(".importer-wrap #exp_ProductsForm").hide();
-						$(".importer-wrap #selectTaxonomy").hide();
 
 						$(".resultExport").slideDown().html($(response).find(".resultExport").html());
 
