@@ -4,7 +4,7 @@ Tags:  product import, excel import, product export, import products, bulk impor
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 7.0.6-dev
+Stable tag: 7.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,7 +166,7 @@ No other data is ever transmitted to extend-wp.com, and no third-party tracking 
 
 == Changelog ==
 
-= 7.0.6 - 28/10/2026 =
+= 7.0.6 - 29/10/2026 =
 * Fix - Import loop now processes every data row of the Excel file (fixed off-by-one that skipped all rows after the first and never showed "Job Done").
 * Dev - Bundled PhpSpreadsheet updated from 3.4.0 to 3.10.8 via Composer (dependency tree regenerated; unused markbaker function files dropped).
 * Dev - Signup and deactivation feedback forms now submit through the site's own AJAX endpoint instead of the browser contacting extend-wp.com directly; external services documented in the FAQ.
