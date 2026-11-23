@@ -1,4 +1,8 @@
-<?php return array(
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+
+return array(
     'root' => array(
         'name' => 'wpfactory/woo-product-excel-importer-classes',
         'pretty_version' => 'dev-main',

@@ -36,6 +36,11 @@ plugin zip via `/build/ export-ignore` in the root `.gitattributes`.
    - Check for reintroduced badly named/dev files (e.g.
      `Classes/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Chart/Renderer/PHP Charting Libraries.txt`)
      and remove them (release zip exclusions live in `.gitattributes`).
+   - Re-apply the direct-access guard. The generated `Classes/autoload.php` and
+     `Classes/composer/{installed,autoload_classmap,autoload_namespaces,autoload_psr4,platform_check}.php`
+     files ship in the plugin, so each must start with
+     `if ( ! defined( 'ABSPATH' ) ) { exit; }` right after `<?php`. Composer
+     rewrites these files on every update, so re-add the guard after rebuilding.
 
 5. Commit `Classes/` plus the updated `composer.json`/`composer.lock`, and add
    a changelog entry in `readme.txt`.

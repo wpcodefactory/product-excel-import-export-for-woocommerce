@@ -4,7 +4,7 @@ Tags:  product import, excel import, product export, import products, bulk impor
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 12.1.6
+Stable tag: 12.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -151,11 +151,34 @@ Yes, we added "wpeieWoo" user capability for admin, you are free to set this cap
 This feature is available in the [PRO Version of Orders Import Export for WooCommerce with Excel](https://extend-wp.com/product/orders-import-export-for-woocommerce-with-excel/ "Orders Import Export for WooCommerce with Excel")
 
 = Does this plugin connect to any external services? =
-Yes, the plugin contacts the vendor's website (extend-wp.com) in three cases, always initiated by an administrator from the plugin's admin screens:
-* When the "More extensions" popup is opened, the plugin downloads the list of available premium plugins from https://extend-wp.com/wp-json/products/v2/product/category/woocommerce. No personal data is transmitted.
-* The optional discount signup notice sends the email address an administrator types into the form to https://extend-wp.com/wp-json/signups/v2/post so that discount notifications can be delivered. Nothing is sent unless the administrator enters an email and presses "Sign up".
-* If an administrator submits deactivation feedback, the selected reason, their comments and the plugin slug and version are sent to https://extend-wp.com/wp-json/feedback/v2/post. No data is sent when deactivating with "Skip & Deactivate".
-No other data is ever transmitted to extend-wp.com, and no third-party tracking is used.
+Yes, the plugin contacts the websites of WPFactory LLC (the plugin's author) for a few optional, administrator-initiated features. See the "External services" section for the full details, including links to the provider's terms and privacy policy. In short:
+* When the "More extensions" popup is opened, the plugin downloads the list of available premium plugins from extend-wp.com. No personal data is transmitted.
+* The optional discount signup notice sends the email address an administrator types into the form to extend-wp.com so that discount notifications can be delivered. Nothing is sent unless the administrator enters an email and presses "Sign up".
+* If an administrator submits deactivation feedback, the selected reason, their comments and the plugin slug and version are sent to extend-wp.com. No data is sent when deactivating with "Skip & Deactivate".
+* Cross-promotional banners shown in the plugin's admin screens are fetched from wpfactory.com. No personal data is transmitted and the results are cached locally.
+No other data is ever transmitted, and no third-party tracking is used.
+
+== External services ==
+
+This plugin connects to the websites of WPFactory LLC (the plugin's author) for a few optional, administrator-initiated features. No data is sent automatically and no visitor or shop data is ever transmitted or tracked.
+
+= extend-wp.com - product catalog, discount signup and deactivation feedback =
+
+What the service is and what it is used for: extend-wp.com is WPFactory's own plugin store. It is used to (1) populate the "More extensions" popup with the available premium plugins, (2) deliver optional discount notifications when an administrator signs up with an email address, and (3) receive optional deactivation feedback.
+
+What data is sent and when:
+
+* When an administrator opens the "More extensions" popup, a request is made to https://extend-wp.com/wp-json/products/v2/product/category/woocommerce to download the list of available plugins. No personal data is sent.
+* When an administrator types an email address into the discount signup notice and presses "Sign up", that email address and a product identifier are sent to https://extend-wp.com/wp-json/signups/v2/post so that discount notifications can be delivered. Nothing is sent unless the administrator submits the form.
+* When an administrator submits the deactivation feedback form, the selected reason, any comments they enter, and the plugin slug and version are sent to https://extend-wp.com/wp-json/feedback/v2/post. Nothing is sent when deactivating with "Skip & Deactivate".
+
+= wpfactory.com - cross-promotional banners =
+
+What the service is and what it is used for: wpfactory.com is WPFactory's main website. It is used to fetch cross-promotional banners that may be displayed on the plugin's admin screens.
+
+What data is sent and when: When an admin screen that can display a banner is loaded, requests are made to https://wpfactory.com/wp-json/advanced-ads/v1/groups and https://wpfactory.com/wp-json/advanced-ads/v1/ads/{id}. No personal data is sent, and the results are cached locally.
+
+Both services are provided by WPFactory LLC. Terms and conditions: https://wpfactory.com/terms-conditions/ - Privacy policy: https://wpfactory.com/privacy-policy/
 
 == Screenshots ==
 
@@ -168,6 +191,10 @@ No other data is ever transmitted to extend-wp.com, and no third-party tracking 
 
 = 12.1.7 - 23/11/2026 =
 * Dev - Code refactoring.
+* Fix - Added `Requires PHP: 8.1` to the plugin header to match the bundled dependencies.
+* Fix - Documented the external services (extend-wp.com and wpfactory.com) in a dedicated "External services" section with terms and privacy policy links.
+* Fix - Added direct-file-access guards to the generated Composer autoloader files under Classes/ and removed dev/tooling files from the vendored dependency tree.
+* Fix - Prefixed the export and category-import classes and scoped admin assets to the plugin screen.
 
 = 12.1.6 - 23/11/2026 =
 * WC tested up to: 11.3.

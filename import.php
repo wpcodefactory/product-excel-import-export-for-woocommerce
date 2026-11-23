@@ -166,6 +166,28 @@ function woopei_process() {
 
 		$post_data = array_map( 'sanitize_text_field', wp_unslash( $_POST ) );
 
+		// Ensure every optional mapping key exists so later lookups never raise
+		// "Undefined array key" warnings when a column is left unmapped.
+		$post_data = wp_parse_args(
+			$post_data,
+			array(
+				'post_title'     => '',
+				'post_status'    => '',
+				'post_author'    => '',
+				'post_name'      => '',
+				'post_content'   => '',
+				'post_excerpt'   => '',
+				'_sku'           => '',
+				'_weight'        => '',
+				'_regular_price' => '',
+				'_sale_price'    => '',
+				'_stock'         => '',
+				'_virtual'       => '',
+				'product_cat'    => '',
+				'product_tag'    => '',
+			)
+		);
+
 		$filename = isset( $post_data['importFile'] ) ? $post_data['importFile'] : '';
 
 		$objPHPExcel    = IOFactory::load( $filename );

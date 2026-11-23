@@ -1,6 +1,6 @@
 <?php
 /**
- * Product Excel Import & Export for WooCommerce - WooImportCategories Class
+ * Product Excel Import & Export for WooCommerce - Woopei_Import_Categories Class
  *
  * @author  WPFactory
  * @version 7.0.6
@@ -14,7 +14,7 @@ if ( ! class_exists( 'PhpOffice\PhpSpreadsheet\IOFactory' ) ) {
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class WooImportCategories {
+class Woopei_Import_Categories {
 
 	public $pro_url = 'https://extend-wp.com/product/wordpress-product-import-export-excel-woocommerce/';
 

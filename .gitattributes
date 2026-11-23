@@ -25,6 +25,13 @@ includes/pro/composer.json
 # Plugin Check: application (dev tooling) files are not permitted in the plugin zip.
 /Classes/**/*.dist export-ignore
 /Classes/**/*.dist.* export-ignore
+/Classes/**/test export-ignore
+/Classes/**/tests export-ignore
+/Classes/**/examples export-ignore
+/Classes/**/guides export-ignore
+/Classes/**/docs export-ignore
+/Classes/**/PHPStan export-ignore
+/Classes/**/buildPhar.php export-ignore
 
 # Large generated bundles: treat as binary so git/VS Code never try to word-diff them.
 js/xlsx.js -diff

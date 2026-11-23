@@ -1,13 +1,13 @@
 <?php
 /**
- * Product Excel Import & Export for WooCommerce - WooexportProducts Class
+ * Product Excel Import & Export for WooCommerce - Woopei_Export_Products Class
  *
  * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
 
-class WooexportProducts {
+class Woopei_Export_Products {
 
 	public $numberOfRows        = 1;
 	public $keyword             = '';

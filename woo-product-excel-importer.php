@@ -3,12 +3,13 @@
  * Plugin Name: Product Excel Import & Export for WooCommerce
  * Plugin URI: https://extend-wp.com/product-import-export-for-woocommerce-with-excel/
  * Description: WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel.
- * Version: 12.1.7-dev
+ * Version: 12.1.7
  * Author: WPFactory
  * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
  * Domain Path: /langs
  * Requires at least: 5.9
+ * Requires PHP: 8.1
  * WC requires at least: 2.2
  * WC tested up to: 11.3
  * Requires Plugins: woocommerce
@@ -20,7 +21,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '12.1.7-dev-20261123-1232' );
+defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '12.1.7' );
 
 defined( 'WPFACTORY_WC_PEIE_FILE' ) || define( 'WPFACTORY_WC_PEIE_FILE', __FILE__ );
 
@@ -52,6 +53,10 @@ function woopei_js() {
 	 *
 	 * @version 7.0.6
 	 */
+	$screen = get_current_screen();
+	if ( ! $screen || false === strpos( $screen->id, 'woo-product-importer' ) ) {
+		return;
+	}
 
 	wp_enqueue_style( 'woo-importer_css', plugins_url( '/css/woo-importer.css', __FILE__ ), array(), WPFACTORY_WC_PEIE_VERSION );
 
@@ -194,10 +199,10 @@ function woopei_init() {
 
 	<?php
 	if ( 'exportProducts' === $current ) {
-		$export = new WooexportProducts();
+		$export = new Woopei_Export_Products();
 		$export->exportProductsDisplay();
 	} elseif ( 'importCategories' === $current ) {
-		$import_cat = new WooImportCategories();
+		$import_cat = new Woopei_Import_Categories();
 		$import_cat->importCategoriesDisplay();
 	} else {
 		woopei_main();
@@ -214,6 +219,10 @@ function woopei_init() {
 
 function woopeiPopup() {
 	/** this function provides popup for pro version */
+	$screen = get_current_screen();
+	if ( ! $screen || false === strpos( $screen->id, 'woo-product-importer' ) ) {
+		return;
+	}
 	?>
 		<div id="woopeiPopup">
 			<!-- Modal content -->
