@@ -128,12 +128,9 @@ function woopei_importProducts() {
 					echo '<p>' . esc_html__( 'TAXABLE', 'woo-product-excel-importer' ) . " <input style='border:1px solid red;background:#ccc;' type='text' style='min-width:200px' name='' required readonly class='' placeholder='Premium Version Only'  /></p>";
 					echo '<p>' . esc_html__( 'TAX CLASS', 'woo-product-excel-importer' ) . " <input style='border:1px solid red;background:#ccc;' type='text' style='min-width:200px' name='' required readonly class='' placeholder='Premium Version Only'  /></p>";
 					print '<h3>' . esc_html__( 'CATEGORY AND TAGS', 'woo-product-excel-importer' ) . '</h3>';
-					$taxonomy_objects = get_object_taxonomies( 'product', 'objects' );
+					$taxonomy_objects = array( 'product_cat', 'product_tag' );
 				foreach ( $taxonomy_objects as $voc ) {
-					// ADDITION : INCLUDE ONLY PRODUCT CATEGORY AND TAGS NOT CUSTOM TAXONOMIES
-					if ( 'product_tag' === $voc->name || 'product_cat' === $voc->name ) {
-						echo '<p>' .  esc_attr( strtoupper( str_replace( '_', ' ', $voc->name  ) ) ) . " <input type='text' style='min-width:200px' name='" . esc_attr( $voc->name ) . "' required readonly class='droppable' placeholder='Drop here column' key /></p>";
-					}
+					echo '<p>' .  esc_attr( strtoupper( str_replace( '_', ' ', $voc ) ) ) . " <input type='text' style='min-width:200px' name='" . esc_attr( $voc ) . "' required readonly class='droppable' placeholder='Drop here column' key /></p>";
 				}
 					echo '<p>' . esc_html__( 'CUSTOM TAXONOMY', 'woo-product-excel-importer' ) . " <input type='text' name='custom_tax' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
 					echo '<p>' . esc_html__( 'ATTRIBUTES', 'woo-product-excel-importer' ) . " <input type='text' name='product_attr' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
@@ -361,23 +358,21 @@ function woopei_process() {
 					wc_delete_product_transients( $id );
 					// TAXONOMIES
 
-					$taxonomy_objects = get_object_taxonomies( 'product', 'objects' );
+					$taxonomy_objects = array( 'product_cat', 'product_tag' );
 		foreach ( $taxonomy_objects as $voc ) {
-			if ( $voc->name === 'product_tag' || $voc->name === 'product_cat' ) {
-				if ( isset( $allDataInSheet[ $i ][ $post_data[ $voc->name ] ] ) ) {
-					$taxToImport = explode( ',', sanitize_text_field( $allDataInSheet[ $i ][ $post_data[ $voc->name ] ] ) );
-					foreach ( $taxToImport as $taxonomy ) {
-						wp_set_object_terms( $id, $taxonomy, $voc->name, true ); // true is critical to append the values
+			if ( isset( $allDataInSheet[ $i ][ $post_data[ $voc ] ] ) ) {
+				$taxToImport = explode( ',', sanitize_text_field( $allDataInSheet[ $i ][ $post_data[ $voc ] ] ) );
+				foreach ( $taxToImport as $taxonomy ) {
+					wp_set_object_terms( $id, $taxonomy, $voc, true ); // true is critical to append the values
 
-						// GET ALL ASSIGNED TERMS AND ADD PARENT FOR PRODUCT_CAT TAXONOMY!!!
-						if ( isset( $post_data['selectparent'] ) ) {
-								$terms = wp_get_post_terms( $id, $voc->name );
-							foreach ( $terms as $term ) {
-								while ( $term->parent !== 0 && ! has_term( $term->parent, sanitize_text_field( $voc->name ), $post ) ) {
-											// move upward until we get to 0 level terms
-											wp_set_object_terms( $id, array( $term->parent ), sanitize_text_field( $voc->name ), true );
-											$term = get_term( $term->parent, esc_attr( $voc->name ) );
-								}
+					// GET ALL ASSIGNED TERMS AND ADD PARENT FOR PRODUCT_CAT TAXONOMY!!!
+					if ( isset( $post_data['selectparent'] ) ) {
+						$terms = wp_get_post_terms( $id, $voc );
+						foreach ( $terms as $term ) {
+							while ( $term->parent !== 0 && ! has_term( $term->parent, sanitize_text_field( $voc ), $post ) ) {
+								// move upward until we get to 0 level terms
+								wp_set_object_terms( $id, array( $term->parent ), sanitize_text_field( $voc ), true );
+								$term = get_term( $term->parent, esc_attr( $voc ) );
 							}
 						}
 					}

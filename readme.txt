@@ -166,6 +166,9 @@ No other data is ever transmitted to extend-wp.com, and no third-party tracking 
 
 == Changelog ==
 
+= 7.0.7 - 23/11/2026 =
+* Dev - Code refactoring.
+
 = 7.0.6 - 29/10/2026 =
 * Fix - Import loop now processes every data row of the Excel file (fixed off-by-one that skipped all rows after the first and never showed "Job Done").
 * Dev - Bundled PhpSpreadsheet updated from 3.4.0 to 3.10.8 via Composer (dependency tree regenerated; unused markbaker function files dropped).
