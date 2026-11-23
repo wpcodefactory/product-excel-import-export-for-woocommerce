@@ -23,7 +23,7 @@ add_action('admin_enqueue_scripts', function() {
 	 *
 	 * @version 7.0.6
 	 */
-	$version = defined( 'WPFACTORY_WC_PEIE_VERSION' ) ? WPFACTORY_WC_PEIE_VERSION : '7.0.6';
+	$version = defined( 'WPFACTORY_WC_PEIE_VERSION' ) ? WPFACTORY_WC_PEIE_VERSION : '12.1.6';
 
 	// Enqueue scripts
 	wp_enqueue_script('remodal', plugin_dir_url(__FILE__) . 'remodal.min.js', array(), $version, true);

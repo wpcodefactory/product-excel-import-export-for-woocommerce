@@ -4,7 +4,7 @@ Tags:  product import, excel import, product export, import products, bulk impor
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 7.0.6
+Stable tag: 12.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,8 +166,13 @@ No other data is ever transmitted to extend-wp.com, and no third-party tracking 
 
 == Changelog ==
 
-= 7.0.7 - 23/11/2026 =
+= 12.1.7 - 23/11/2026 =
 * Dev - Code refactoring.
+
+= 12.1.6 - 23/11/2026 =
+* WC tested up to: 11.3.
+* Dev - WPFactory Admin Menu - Library updated (to v1.1.4).
+* Dev - WPFactory Cross-Selling - Library updated (to v1.1.7).
 
 = 7.0.6 - 29/10/2026 =
 * Fix - Import loop now processes every data row of the Excel file (fixed off-by-one that skipped all rows after the first and never showed "Job Done").
