@@ -16,7 +16,7 @@
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Created On: 10-05-2016
- * Updated On: 29-10-2026
+ * Updated On: 23-11-2026
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -42,10 +42,18 @@ if ( ! function_exists( 'wpfactory_wc_peie' ) ) {
 add_action( 'plugins_loaded', 'wpfactory_wc_peie' );
 
 /**
- * role.
+ * Adds the plugin's custom capability to the administrator role.
+ *
+ * Runs on `admin_init` so roles are guaranteed to be initialized, and guards
+ * against the administrator role being unavailable to avoid a fatal error.
  */
-$role = get_role( 'administrator' );
-$role->add_cap( 'wpeieWoo' );
+function woopei_add_capabilities() {
+	$role = get_role( 'administrator' );
+	if ( $role && ! $role->has_cap( 'wpeieWoo' ) ) {
+		$role->add_cap( 'wpeieWoo' );
+	}
+}
+add_action( 'admin_init', 'woopei_add_capabilities' );
 
 function woopei_js() {
 	/**

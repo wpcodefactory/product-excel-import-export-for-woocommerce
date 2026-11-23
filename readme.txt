@@ -195,6 +195,8 @@ Both services are provided by WPFactory LLC. Terms and conditions: https://wpfac
 * Fix - Documented the external services (extend-wp.com and wpfactory.com) in a dedicated "External services" section with terms and privacy policy links.
 * Fix - Added direct-file-access guards to the generated Composer autoloader files under Classes/ and removed dev/tooling files from the vendored dependency tree.
 * Fix - Prefixed the export and category-import classes and scoped admin assets to the plugin screen.
+* Fix - The `wpeieWoo` capability is now added on `admin_init` with a guard, preventing a fatal error when the administrator role is unavailable.
+* Fix - Import no longer raises "Undefined array key" notices when optional columns are left unmapped.
 
 = 12.1.6 - 23/11/2026 =
 * WC tested up to: 11.3.
