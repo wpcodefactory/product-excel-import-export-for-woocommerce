@@ -10,7 +10,6 @@
 	$(".importer-wrap .exportToggler").click(function(){
 		$(".importer-wrap #exp_ProductsForm").slideToggle();
 		$(".importer-wrap .exportTableWrapper").slideToggle();
-		$(".importer-wrap .downloadToExcel").slideToggle();
 	});
 
 

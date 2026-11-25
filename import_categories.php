@@ -3,7 +3,7 @@
  * Product Excel Import & Export for WooCommerce - Woopei_Import_Categories Class
  *
  * @author  WPFactory
- * @version 7.0.6
+ * @version 12.1.7
  */
 
 defined( 'ABSPATH' ) || exit;

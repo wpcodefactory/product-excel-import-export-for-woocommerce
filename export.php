@@ -3,6 +3,7 @@
  * Product Excel Import & Export for WooCommerce - Woopei_Export_Products Class
  *
  * @author  WPFactory
+ * @version 12.1.7
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -12,11 +13,6 @@ class Woopei_Export_Products {
 	public $numberOfRows        = 1;
 	public $keyword             = '';
 	public $posts_per_page      = '';
-	public $sale_price          = '';
-	public $regular_price       = '';
-	public $price_selector      = '';
-	public $sale_price_selector = '';
-	public $sku                 = '';
 	public $offset              = '';
 
 	public function exportProductsDisplay() {
@@ -83,7 +79,7 @@ class Woopei_Export_Products {
 							<td class='premium'>
 								<?php esc_html_e( 'Regular Price Selector', 'woo-product-excel-importer' ); ?> - <?php esc_html_e( 'PRO Version', 'woo-product-excel-importer' ); ?>
 							</td>
-							<td>
+							<td class='premium'>
 								<select name='price_selector' disabled id='price_selector'>
 									<option value=">">></option>
 									<option value=">=">>=</option>
@@ -98,7 +94,7 @@ class Woopei_Export_Products {
 							<td class='premium'>
 								<?php esc_html_e( 'Sale Price', 'woo-product-excel-importer' ); ?> - <?php esc_html_e( 'PRO Version', 'woo-product-excel-importer' ); ?>
 							</td>
-							<td>
+							<td class='premium'>
 								<input type='number' name='sale_price' id='sale_price' disabled placeholder='<?php esc_html_e( 'Sale Price - PRO ', 'woo-product-excel-importer' ); ?>'/>
 							</td>
 

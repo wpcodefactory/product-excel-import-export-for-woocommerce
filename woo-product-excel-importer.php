@@ -3,7 +3,7 @@
  * Plugin Name: Product Excel Import & Export for WooCommerce
  * Plugin URI: https://extend-wp.com/product-import-export-for-woocommerce-with-excel/
  * Description: WordPress Plugin to Import/Update/Export Simple products for WooCommerce in Bulk with Excel.
- * Version: 12.1.7
+ * Version: 12.1.8
  * Author: WPFactory
  * Author URI: https://wpfactory.com
  * Text Domain: woo-product-excel-importer
@@ -16,12 +16,12 @@
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Created On: 10-05-2016
- * Updated On: 23-11-2026
+ * Updated On: 25-11-2026
  */
 
 defined( 'ABSPATH' ) || exit;
 
-defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '12.1.7' );
+defined( 'WPFACTORY_WC_PEIE_VERSION' ) || define( 'WPFACTORY_WC_PEIE_VERSION', '12.1.8' );
 
 defined( 'WPFACTORY_WC_PEIE_FILE' ) || define( 'WPFACTORY_WC_PEIE_FILE', __FILE__ );
 
@@ -46,6 +46,8 @@ add_action( 'plugins_loaded', 'wpfactory_wc_peie' );
  *
  * Runs on `admin_init` so roles are guaranteed to be initialized, and guards
  * against the administrator role being unavailable to avoid a fatal error.
+ *
+ * @version 12.1.7
  */
 function woopei_add_capabilities() {
 	$role = get_role( 'administrator' );
@@ -59,7 +61,7 @@ function woopei_js() {
 	/**
 	 * This function css and js files.
 	 *
-	 * @version 7.0.6
+	 * @version 12.1.7
 	 */
 	$screen = get_current_screen();
 	if ( ! $screen || false === strpos( $screen->id, 'woo-product-importer' ) ) {
@@ -168,7 +170,7 @@ function woopei_init() {
 	/**
 	 * This function initializes the main interface.
 	 *
-	 * @version 7.0.6
+	 * @version 12.1.7
 	 */
 	?>
 	<div class="importer-wrap">

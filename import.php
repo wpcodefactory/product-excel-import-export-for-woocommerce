@@ -2,7 +2,7 @@
 /**
  * Product Excel Import & Export for WooCommerce - Import
  *
- * @version 7.0.6
+ * @version 12.1.7
  *
  * @author  WPFactory
  */
@@ -13,10 +13,7 @@ if ( ! class_exists( 'PhpOffice\PhpSpreadsheet\IOFactory' ) ) {
 	include plugin_dir_path( __FILE__ ) . '/Classes/autoload.php';
 }
 
-use PhpOffice\PhpSpreadsheet\Helper\Sample;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
  * woopei_importProducts.
@@ -99,7 +96,7 @@ function woopei_importProducts() {
 				print "<div style='float:left;width:50%'>";
 
 				?>
-				<p class='hideOnUpdateById'>
+				<p>
 					<input type='checkbox' name='selectparent' id='selectparent' value='yes'  /> <b> <?php esc_html_e( 'Select Parent Categories as well ', 'woo-product-excel-importer' ); ?></b>
 				</p>
 
@@ -118,7 +115,7 @@ function woopei_importProducts() {
 					echo '<p>' . esc_html( strtoupper( str_replace( '_', ' ', $meta  ) ) ) . " <input type='text' style='min-width:200px' name='" . esc_attr( $meta ) . "' required readonly class='droppable' placeholder='Drop here column'  /></p>";
 				}
 					echo '<p>' . esc_html__( 'IMAGE', 'woo-product-excel-importer' ) . " <input  type='text' name='' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
-					echo '<p>' . esc_html__( 'PRODUCT IMAGE GALLERY', 'woo-product-excel-importer' ) . " <input  type='text'  style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only' placeholder='Drop here column'  /></p>";
+					echo '<p>' . esc_html__( 'PRODUCT IMAGE GALLERY', 'woo-product-excel-importer' ) . " <input  type='text'  style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
 
 					echo '<p>' . esc_html__( 'VIRTUAL', 'woo-product-excel-importer' ) . "<input type='text' style='min-width:200px' name='_virtual' required readonly class='droppable' placeholder='Downloadable Product'  /></p>";
 					echo '<p>' . esc_html__( 'DOWNLOADABLE', 'woo-product-excel-importer' ) . " <input style='border:1px solid red;background:#ccc;' type='text' style='min-width:200px' name='' required readonly class='' placeholder='Premium Version Only'  /></p>";
@@ -132,8 +129,8 @@ function woopei_importProducts() {
 				foreach ( $taxonomy_objects as $voc ) {
 					echo '<p>' .  esc_attr( strtoupper( str_replace( '_', ' ', $voc ) ) ) . " <input type='text' style='min-width:200px' name='" . esc_attr( $voc ) . "' required readonly class='droppable' placeholder='Drop here column' key /></p>";
 				}
-					echo '<p>' . esc_html__( 'CUSTOM TAXONOMY', 'woo-product-excel-importer' ) . " <input type='text' name='custom_tax' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
-					echo '<p>' . esc_html__( 'ATTRIBUTES', 'woo-product-excel-importer' ) . " <input type='text' name='product_attr' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
+					echo '<p>' . esc_html__( 'CUSTOM TAXONOMY', 'woo-product-excel-importer' ) . " <input type='text' name='' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
+					echo '<p>' . esc_html__( 'ATTRIBUTES', 'woo-product-excel-importer' ) . " <input type='text' name='' style='border:1px solid red;background:#ccc;' readonly  placeholder='Premium Version Only'  /></p>";
 				?>
 
 					<input type='hidden' name='finalupload' value='<?php print esc_attr( $totals ); ?>' />
@@ -155,7 +152,7 @@ function woopei_importProducts() {
 /**
  * woopei_process.
  *
- * @version 7.0.6
+ * @version 12.1.7
  */
 function woopei_process() {
 

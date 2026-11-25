@@ -4,7 +4,7 @@ Tags:  product import, excel import, product export, import products, bulk impor
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 12.1.7
+Stable tag: 12.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,7 +27,7 @@ Export your WooCommerce products in excel file to later do Inventory Stock Updat
 * **Automatch feature** - The plugin can automatically map excel columns to the relevant product fields based on label names.
 
 == OTHER FEATURES ==
-* define user role to use the plugin apart from admin
+* Custom `wpeieWoo` capability to allow other roles to use the plugin
 
 == You need to Import / Export Variable Products? ==
 
@@ -188,6 +188,9 @@ Both services are provided by WPFactory LLC. Terms and conditions: https://wpfac
 4. WordPress Product Excel Import & Export Functionality
 
 == Changelog ==
+
+= 12.1.8 - 25/11/2026 =
+* Dev - Code cleanup and improvements.
 
 = 12.1.7 - 23/11/2026 =
 * Dev - Code refactoring.
